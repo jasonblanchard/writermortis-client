@@ -43,5 +43,9 @@ module.exports = function(environment) {
 
   }
 
+  ENV['simple-auth-devise'] = {
+    resourceName: 'user'
+  };
+
   return ENV;
 };

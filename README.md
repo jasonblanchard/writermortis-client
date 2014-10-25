@@ -1,8 +1,7 @@
 # Writermortis
 
-This README outlines the details of collaborating on this Ember application.
+Front end for https://github.com/jasonblanchard/writermortis2
 
-A short introduction of this app could easily go here.
 
 ## Prerequisites
 
