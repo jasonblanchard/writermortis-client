@@ -1,7 +1,7 @@
 # Writermortis
-
 Front end for https://github.com/jasonblanchard/writermortis2
 
+[![Code Climate](https://codeclimate.com/github/jasonblanchard/writermortis-client/badges/gpa.svg)](https://codeclimate.com/github/jasonblanchard/writermortis-client)
 
 ## Prerequisites
 
