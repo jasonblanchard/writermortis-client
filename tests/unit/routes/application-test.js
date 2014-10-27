@@ -3,7 +3,7 @@ import {
   test
 } from 'ember-qunit';
 
-moduleFor('route:logout', 'LogoutRoute', {
+moduleFor('route:application', 'ApplicationRoute', {
   // Specify the other units that are required for this test.
   // needs: ['controller:foo']
 });
