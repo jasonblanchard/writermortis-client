@@ -4,5 +4,6 @@ export default DS.Model.extend({
   text: DS.attr('string'),
   createdAt: DS.attr('date'),
   updatedAt: DS.attr('date'),
-  story: DS.belongsTo('story')
+  story: DS.belongsTo('story'),
+  user: DS.belongsTo('user')
 });
