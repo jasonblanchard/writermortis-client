@@ -6,3 +6,10 @@
   <span>{{text}} ({{this.user.email}})</span>
   {{/each}}
 </div>
+
+<div>
+  {{textarea value=newPiece.text}}
+  <br />
+  <button {{action 'createPiece'}}>Create Piece</button>
+</div>
+  
