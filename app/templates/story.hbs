@@ -7,9 +7,13 @@
   {{/each}}
 </div>
 
-<div>
-  {{textarea value=newPiece.text}}
-  <br />
-  <button {{action 'createPiece'}}>Create Piece</button>
-</div>
+{{#if canPost}}
+  <div>
+    {{textarea value=newPiece.text}}
+    <br />
+    <button {{action 'createPiece'}}>Create Piece</button>
+  </div>
+{{else}}
+  <strong>You added the last piece!</strong>
+{{/if}}
   

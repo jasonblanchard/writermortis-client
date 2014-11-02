@@ -1,27 +1,37 @@
 import Ember from 'ember';
 
 export default Ember.ObjectController.extend({
+  
+  // TODO: Figure out how to inject currentUser in all routes
+  needs: ['application'],
+  currentUser: Ember.computed.alias('controllers.application.currentUser'),
+
   newPiece: function() {
     return this.store.createRecord('piece');
   }.property('model'),
 
+  canPost: function() {
+    // FIXME Ugggh
+    return this.get('currentUser').id !== this.get('model').get('pieces').get('lastObject').get('user').get('id');
+  }.property('currentUser', 'model.pieces.@each'),
+
   actions: {
+
     createPiece: function() {
       var controller = this;
       var piece = this.get('newPiece');
-
-      // TODO Extract this currentUser stuff into something else
-      var session = controller.get('session');
-      var userId = session.get('content').user_id;
       var story = controller.get('model');
-      controller.store.find('user', userId).then(function(user) {
-        piece.set('user', user);
-        piece.set('story', story);
 
-        piece.save().then(function(piece) {
-          controller.get('model.pieces').addObject(piece);
-        });
-      });
+      piece.set('user', controller.get('currentUser'));
+      piece.set('story', story);
+
+      piece.save().then(function(piece) {
+        // Happy path
+      }).catch(function(response) {
+        piece.deleteRecord();
+        console.log(response.responseJSON.errors);
+      })
     }
+
   }
 });
