@@ -2,6 +2,7 @@
   <h1 class='pull-left'>WM</h1>
   <div class='pull-right'>
     {{#if session.isAuthenticated}}
+      {{currentUser.email}}
       <a href='' {{ action 'invalidateSession' }}>Logout</a>
     {{else}}
       {{#link-to 'login'}}Login{{/link-to}}    

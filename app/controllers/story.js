@@ -2,10 +2,6 @@ import Ember from 'ember';
 
 export default Ember.ObjectController.extend({
   
-  // TODO: Figure out how to inject currentUser in all routes
-  needs: ['application'],
-  currentUser: Ember.computed.alias('controllers.application.currentUser'),
-
   newPiece: function() {
     return this.store.createRecord('piece');
   }.property('model'),
