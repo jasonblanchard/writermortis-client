@@ -49,6 +49,7 @@ module.exports = function(environment) {
   };
 
   ENV['simple-auth-devise'] = {
+    serverTokenEndpoint: 'http://localhost:3000/users/sign_in'
   };
 
   return ENV;
