@@ -1,4 +1,4 @@
-<div class='story'>
+<div class='story editable' {{action "storyClicked" on="click"}}>
   <h2>{{story.title}}</h2>
   <div>
     Pieces:
@@ -6,16 +6,20 @@
     {{#each story.pieces}}
     <span>{{text}} ({{this.user.email}})</span>
     {{/each}}
-    <span>{{newPiece.text}}|</span>
+    {{#if canPost}}
+      <span>{{newPiece.text}}|</span>
+    {{/if}}
   </div>
 
   {{#if canPost}}
     <div>
-      {{hidden-textarea text=newPiece.text}}
+      <div class='hidden-textarea-wrapper'>
+        {{textarea value=newPiece.text}}
+      </div>
       <br />
       <button {{action 'createPiece'}}>Create Piece</button>
     </div>
   {{else}}
-    <strong>You added the last piece!</strong>
+    <strong>You can't add a piece right now...</strong>
   {{/if}}
 </div>
