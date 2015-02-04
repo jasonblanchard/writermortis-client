@@ -1,0 +1,21 @@
+<div class='story'>
+  <h2>{{story.title}}</h2>
+  <div>
+    Pieces:
+    <br />
+    {{#each story.pieces}}
+    <span>{{text}} ({{this.user.email}})</span>
+    {{/each}}
+    <span>{{newPiece.text}}|</span>
+  </div>
+
+  {{#if canPost}}
+    <div>
+      {{hidden-textarea text=newPiece.text}}
+      <br />
+      <button {{action 'createPiece'}}>Create Piece</button>
+    </div>
+  {{else}}
+    <strong>You added the last piece!</strong>
+  {{/if}}
+</div>
