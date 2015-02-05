@@ -3,23 +3,25 @@
   <div>
     Pieces:
     <br />
-    {{#each story.pieces}}
-    <span>{{text}} ({{this.user.email}})</span>
-    {{/each}}
-    {{#if canPost}}
-      <span>{{newPiece.text}}|</span>
-    {{/if}}
-  </div>
+    <div class='pieces'>
+      {{#each story.pieces}}
+      <span>{{text}} ({{this.user.email}})</span>
+      {{/each}}
+      {{#if canPost}}
+      <span>{{newPiece.text}}{{blinking-cursor}}</span>
+      {{/if}}
+    </div>
 
   {{#if canPost}}
-    <div>
       <div class='hidden-textarea-wrapper'>
         {{textarea value=newPiece.text}}
       </div>
       <br />
       <button {{action 'createPiece'}}>Create Piece</button>
-    </div>
-  {{else}}
-    <strong>You can't add a piece right now...</strong>
+    {{else}}
+      <div>
+        <strong>You can't add a piece right now...</strong>
+      </div>
   {{/if}}
+
 </div>

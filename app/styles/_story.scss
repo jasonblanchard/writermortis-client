@@ -1,7 +1,15 @@
 .story { 
 
+  .pieces {
+    line-height: 1.2;
+  }
+
   .hidden-textarea-wrapper {
     overflow: hidden;
     height: 0;
+
+    textarea { 
+      display: inline;
+    }
   }
 }
