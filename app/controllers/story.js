@@ -6,6 +6,21 @@ export default Ember.ObjectController.extend({
     return this.store.createRecord('piece', {text: '...'});
   }.property('model'),
 
+  piecesLeft: function() {
+    var maxPieces = this.get('model').get('totalPieces');
+    var currentPieces = this.get('model').get('pieces').get('length');
+    return maxPieces - currentPieces;
+  }.property('model', 'model.pieces.@each'),
+
+  isFinished: function() {
+    return this.get('piecesLeft') == 0;
+  }.property('piecesLeft'),
+
+  participants: function() {
+    var story = this.get('model');
+    return story.get('pieces').mapBy('user').uniq();
+  }.property('model', 'model.pieces.@each'),
+
   persistentPiece: function() {
     return this.store.createRecord('piece');
   }.property('model'),

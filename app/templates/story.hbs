@@ -1,11 +1,19 @@
-<div class='col-md-2'>
-  pieces left
-</div>
+{{#if piecesLeft}}
+  <div class='col-md-2'>
+    {{piecesLeft}} pieces left
+  </div>
 
-<div class='col-md-7'>
-  {{editable-story-viewer story=model newPiece=newPiece canPost=canPost currentUser=currentUser persistentPiece=persistentPiece}}
-</div>
+  <div class='col-md-7'>
+    {{editable-story-viewer story=model newPiece=newPiece canPost=canPost currentUser=currentUser persistentPiece=persistentPiece}}
+  </div>
 
-<div class='col-md-3'>
-  participants
-</div>
+  <div class='col-md-3'>
+    participants
+    {{#each participant in participants}}
+      <div>{{participant.email}}</div>
+    {{/each}}
+  </div>
+{{else}}
+  story is done
+  TODO: Add stuff here 
+{{/if}}

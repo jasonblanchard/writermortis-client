@@ -1,11 +1,9 @@
 <div class='story editable' {{action "storyClicked" on="click"}}>
   <h2>{{story.title}}</h2>
   <div>
-    Pieces:
-    <br />
     <div class='pieces'>
       {{#each story.pieces}}
-      <span>{{formatted-text this.text}} ({{this.user.email}})</span>
+      <span {{bind-attr data-author=this.user.email}}>{{formatted-text this.text}}</span>
       {{/each}}
       {{#if canPost}}
       {{editable-content text=newPiece.text}}
@@ -17,7 +15,7 @@
         {{textarea value=newPiece.text}}
       </div>
       <br />
-      <button {{action 'createPiece'}}>Create Piece</button>
+      <button {{action 'createPiece'}} class='btn btn-success'>Create Piece</button>
     {{else}}
       <div>
         <strong>You can't add a piece right now...</strong>
