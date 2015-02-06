@@ -1,14 +1,23 @@
-<header class='cf'>
-  <h1 class='pull-left'>WM</h1>
-  <div class='pull-right'>
-    {{#if session.isAuthenticated}}
-      {{currentUser.email}}
-      <a href='' {{ action 'invalidateSession' }}>Logout</a>
-    {{else}}
-      {{#link-to 'login'}}Login{{/link-to}}    
-    {{/if}}
-  </div>
-</header>
+<nav class="navbar navbar-default">
+   <div class="container-fluid">
+     <div class="navbar-header">
+       {{#link-to 'stories.index' classNames='navbar-brand'}}WS{{/link-to}}
+     </div>
+     <ul class="nav navbar-nav navbar-right">
+       {{#if session.isAuthenticated}}
+         <li class="dropdown">
+           <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">{{currentUser.email}}<span class="caret"></span></a>
+           <ul class="dropdown-menu" role="menu">
+             <li><a href='' {{ action 'invalidateSession' }}>Logout</a></li>
+           </ul>
+         </li>
+       {{else}}
+         <li>{{#link-to 'login'}}Login{{/link-to}}</li>
+       {{/if}}
+     </ul>
+   </div>
+ </div>
+</nav>
 
 <main class='row'>
   <div class='col-md-12'>
