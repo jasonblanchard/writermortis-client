@@ -3,7 +3,7 @@ import {
   test
 } from 'ember-qunit';
 
-moduleForComponent('blinking-cursor', 'BlinkingCursorComponent', {
+moduleForComponent('editable-content', 'EditableContentComponent', {
   // specify the other units that are required for this test
   // needs: ['component:foo', 'helper:bar']
 });

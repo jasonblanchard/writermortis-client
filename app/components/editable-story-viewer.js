@@ -7,8 +7,7 @@ export default Ember.Component.extend({
   actions: {
 
     storyClicked: function() {
-      console.log('clicked');
-      this.$('.hidden-textarea-wrapper').find('textarea').focus();
+      //this.$('.hidden-textarea-wrapper').find('textarea').focus();
     },
 
     createPiece: function() {

@@ -3,7 +3,7 @@ import Ember from 'ember';
 export default Ember.ObjectController.extend({
   
   newPiece: function() {
-    return this.store.createRecord('piece');
+    return this.store.createRecord('piece', {text: '...'});
   }.property('model'),
 
   persistentPiece: function() {

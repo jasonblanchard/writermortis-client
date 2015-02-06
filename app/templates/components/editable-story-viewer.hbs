@@ -5,10 +5,10 @@
     <br />
     <div class='pieces'>
       {{#each story.pieces}}
-      <span>{{text}} ({{this.user.email}})</span>
+      <span>{{formatted-text this.text}} ({{this.user.email}})</span>
       {{/each}}
       {{#if canPost}}
-      <span>{{formatted-text newPiece.text}}{{blinking-cursor}}</span>
+      {{editable-content text=newPiece.text}}
       {{/if}}
     </div>
 
