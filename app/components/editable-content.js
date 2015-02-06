@@ -5,10 +5,7 @@ export default Ember.Component.extend({
   classNames: ['editable-span'],
 
   keyUp: function() {
-    this.set('text', this.$('span').text());
+    this.set('text', this.$('.content').text());
   },
 
-  didInsertElement: function() {
-    this.$('.content').focus();
-  }
 });

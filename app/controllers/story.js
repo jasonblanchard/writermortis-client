@@ -5,6 +5,15 @@ export default Ember.ObjectController.extend({
   newPiece: function() {
     return this.store.createRecord('piece', {text: '...'});
   }.property('model'),
+  
+  persistentPiece: function() {
+    return this.store.createRecord('piece');
+  }.property('model'),
+
+  visiblePieces: function() {
+    var pieces = this.get('model').get('pieces');
+    return Ember.A([pieces.get('lastObject')]);
+  }.property('model', 'model.pieces.@each'),
 
   piecesLeft: function() {
     var maxPieces = this.get('model').get('totalPieces');
@@ -20,10 +29,6 @@ export default Ember.ObjectController.extend({
     var story = this.get('model');
     return story.get('pieces').mapBy('user').uniq();
   }.property('model', 'model.pieces.@each'),
-
-  persistentPiece: function() {
-    return this.store.createRecord('piece');
-  }.property('model'),
 
   canPost: function() {
     // FIXME Ugggh

@@ -2,7 +2,7 @@
   <h2>{{story.title}}</h2>
   <div>
     <div class='pieces'>
-      {{#each story.pieces}}
+      {{#each visiblePieces}}
       <span {{bind-attr data-author=this.user.email}}>{{formatted-text this.text}}</span>
       {{/each}}
       {{#if canPost}}
