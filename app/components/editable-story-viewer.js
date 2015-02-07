@@ -24,9 +24,8 @@ export default Ember.Component.extend({
         story.get('pieces').addObject(piece);
         newPiece.set('text', '');
       }).catch(function(response) {
-        piece.deleteRecord();
         console.log(response.responseJSON.errors);
-      })
+      });
     }
 
   }

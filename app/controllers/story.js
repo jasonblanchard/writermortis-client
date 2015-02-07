@@ -22,7 +22,7 @@ export default Ember.ObjectController.extend({
   }.property('model', 'model.pieces.@each'),
 
   isFinished: function() {
-    return this.get('piecesLeft') == 0;
+    return this.get('piecesLeft') === 0;
   }.property('piecesLeft'),
 
   participants: function() {
@@ -35,7 +35,7 @@ export default Ember.ObjectController.extend({
     if ( this.get('currentUser') ) {
       return this.get('currentUser').id !== this.get('model').get('pieces').get('lastObject').get('user').get('id');
     } else {
-      return false
+      return false;
     }
   }.property('currentUser', 'model.pieces.@each'),
 });
