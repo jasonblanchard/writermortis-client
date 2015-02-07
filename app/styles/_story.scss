@@ -14,11 +14,12 @@
   }
 
   .rules {
-    .green {
+    .under {
       color: #51a351;
     }
 
-    .red {
+    .over {
+      font-weight: bold;
       color: #ac5555;
     }
   }

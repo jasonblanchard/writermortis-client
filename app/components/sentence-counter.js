@@ -2,7 +2,7 @@ import Ember from 'ember';
 
 export default Ember.Component.extend({
 
-  classNames: ['rules', 'sentence-count'],
+  classNames: ['rules', 'sentence-count', 'sub'],
 
   currentSentenceCount: function() {
     var sentences = this.get('text').match(/([^\r\n.!?]+([.!?]+|$))/gim);
@@ -18,11 +18,11 @@ export default Ember.Component.extend({
     var count = this.get('currentSentenceCount');
 
     if (count === 0) {
-      return 'base';
+      return 'none';
     } else if (count <= this.get('maxSentences') ) { 
-      return 'green';
+      return 'under';
     } else {
-      return 'red';
+      return 'over';
     }
 
   }.property('currentSentenceCount')
