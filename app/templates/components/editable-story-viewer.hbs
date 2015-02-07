@@ -6,7 +6,8 @@
       <span {{bind-attr data-author=this.user.email}}>{{formatted-text this.text}}</span>
       {{/each}}
       {{#if canPost}}
-      {{editable-content text=newPiece.text}}
+        {{editable-content text=newPiece.text}}
+        {{sentence-counter maxSentences=story.maxSentences text=newPiece.text}}
       {{/if}}
     </div>
 
