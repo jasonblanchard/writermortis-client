@@ -1,6 +1,11 @@
 {{#if piecesLeft}}
   <div class='col-md-2'>
     {{piecesLeft}} pieces left
+    <div class="progress">
+      <div class="progress-bar" role="progressbar" {{bind-attr aria-valuenow='percentComplete'}} aria-valuemin="0" aria-valuemax="100" {{bind-attr style='progressBarStyle'}}>
+        <span class="sr-only">60% Complete</span>
+      </div>
+    </div>
   </div>
 
   <div class='col-md-7'>
@@ -8,7 +13,7 @@
   </div>
 
   <div class='col-md-3'>
-    participants
+    <h2>participants</h2>
     {{#each participant in participants}}
       <div>{{participant.email}}</div>
     {{/each}}

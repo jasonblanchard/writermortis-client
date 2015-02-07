@@ -21,6 +21,16 @@ export default Ember.ObjectController.extend({
     return maxPieces - currentPieces;
   }.property('model', 'model.pieces.@each'),
 
+  percentComplete: function() {
+    var pieces = this.get('model').get('pieces').get('length');
+    var totalPossible = this.get('model').get('totalPieces');
+    return Math.round((pieces / totalPossible) * 100);
+  }.property('piecesLeft'),
+
+  progressBarStyle: function() {
+    return "width: " + this.get('percentComplete') + "%;";
+  }.property('percentComplete'),
+
   isFinished: function() {
     return this.get('piecesLeft') === 0;
   }.property('piecesLeft'),
