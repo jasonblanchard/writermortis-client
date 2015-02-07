@@ -15,11 +15,15 @@ export default Ember.ObjectController.extend({
     return Ember.A([pieces.get('lastObject')]);
   }.property('model', 'model.pieces.@each'),
 
-  piecesLeft: function() {
-    var maxPieces = this.get('model').get('totalPieces');
-    var currentPieces = this.get('model').get('pieces').get('length');
-    return maxPieces - currentPieces;
+  currentPieceLength: function() {
+    return this.get('model').get('pieces').get('length');
   }.property('model', 'model.pieces.@each'),
+
+  piecesLeft: function() {
+    var maxPieces = this.get('totalPieces');
+    var currentPieces = this.get('currentPieceLength');
+    return maxPieces - currentPieces;
+  }.property('model', 'currentPieceLength'),
 
   percentComplete: function() {
     var pieces = this.get('model').get('pieces').get('length');
