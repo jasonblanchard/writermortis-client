@@ -5,6 +5,9 @@ export default Ember.Component.extend({
   classNames: ['rules', 'sentence-count', 'sub'],
 
   currentSentenceCount: function() {
+    if (this.get('text') === undefined) {
+      return 0;
+    }
     var sentences = this.get('text').match(/([^\r\n.!?]+([.!?]+|$))/gim);
 
     if ( sentences != null ) {
