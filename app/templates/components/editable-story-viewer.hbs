@@ -2,11 +2,11 @@
   <h2>{{story.title}}</h2>
   <div>
     <div class='pieces'>
-      {{#each visiblePieces}}
-      <span {{bind-attr data-author=this.user.email}}>{{formatted-text this.text}}</span>
-      {{/each}}
+      <span class='transition-piece' {{bind-attr data-author=visiblePiece.user.email}}>{{formatted-text visiblePiece.text}}</span>
       {{#if canPost}}
         {{editable-content text=newPiece.text}}
+        <br />
+        <br />
         {{sentence-counter maxSentences=story.maxSentences text=newPiece.text}}
       {{/if}}
     </div>

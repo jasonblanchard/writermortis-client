@@ -10,9 +10,9 @@ export default Ember.ObjectController.extend({
     return this.store.createRecord('piece');
   }.property('model'),
 
-  visiblePieces: function() {
+  visiblePiece: function() {
     var pieces = this.get('model').get('pieces');
-    return Ember.A([pieces.get('lastObject')]);
+    return pieces.get('lastObject');
   }.property('model', 'model.pieces.@each'),
 
   currentPieceLength: function() {
