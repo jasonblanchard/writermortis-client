@@ -2,7 +2,11 @@
   <h2>{{story.title}}</h2>
   <div>
     <div class='pieces'>
-      <span class='transition-piece' {{bind-attr data-author=visiblePiece.user.email}}>{{formatted-text visiblePiece.text}}</span>
+      <span class='transition-piece' {{bind-attr data-author=visiblePiece.user.email}}>
+        {{#liquid-with visiblePiece.text as text}}
+          {{formatted-text text}}
+        {{/liquid-with}}
+      </span>
       {{#if canPost}}
         {{editable-content text=newPiece.text}}
         <br />

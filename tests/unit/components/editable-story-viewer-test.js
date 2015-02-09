@@ -5,7 +5,7 @@ import {
 
 moduleForComponent('editable-story-viewer', 'EditableStoryViewerComponent', {
   // specify the other units that are required for this test
-  // needs: ['component:foo', 'helper:bar']
+  needs: ['helper:formatted-text']
 });
 
 test('it renders', function() {
