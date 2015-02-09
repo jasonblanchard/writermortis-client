@@ -1,18 +1,18 @@
 <div class='story editable' {{action "storyClicked" on="click"}}>
   <h2>{{story.title}}</h2>
   <div>
-    <div class='pieces'>
-      <span class='transition-piece' {{bind-attr data-author=visiblePiece.user.email}}>
-        {{#liquid-with visiblePiece.text as text}}
-          {{formatted-text text}}
+    <div class='pieces transition-piece'>
+        {{#liquid-with visiblePiece as visiblePiece}}
+          <span class='transition-piece' {{bind-attr data-author=visiblePiece.user.email}}>
+              {{formatted-text visiblePiece.text}}
+          </span>
+          {{#if canPost}}
+            {{editable-content text=newPiece.text}}
+            <br />
+            <br />
+            {{sentence-counter maxSentences=story.maxSentences text=newPiece.text}}
+          {{/if}}
         {{/liquid-with}}
-      </span>
-      {{#if canPost}}
-        {{editable-content text=newPiece.text}}
-        <br />
-        <br />
-        {{sentence-counter maxSentences=story.maxSentences text=newPiece.text}}
-      {{/if}}
     </div>
 
   {{#if canPost}}

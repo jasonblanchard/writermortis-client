@@ -24,7 +24,9 @@
     }
   }
 
-  .transition-piece div {
-    display: inline;
+  .transition-piece {
+    .liquid-container {
+      padding-top: 4px;
+    }
   }
 }
