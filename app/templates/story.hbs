@@ -1,15 +1,16 @@
 {{#if piecesLeft}}
-  <div class='col-md-2'>
+
+  <div class='col-md-7 col-md-push-2'>
+    {{editable-story-viewer story=model visiblePiece=visiblePiece newPiece=newPiece canPost=canPost currentUser=currentUser persistentPiece=persistentPiece}}
+  </div>
+
+  <div class='col-md-2 col-md-pull-7'>
     <h2>{{currentPieceLength}} / {{totalPieces}} Pieces</h2>
     <div class="progress">
       <div class="progress-bar" role="progressbar" {{bind-attr aria-valuenow='percentComplete'}} aria-valuemin="0" aria-valuemax="100" {{bind-attr style='progressBarStyle'}}>
         <span class="sr-only">60% Complete</span>
       </div>
     </div>
-  </div>
-
-  <div class='col-md-7'>
-    {{editable-story-viewer story=model visiblePiece=visiblePiece newPiece=newPiece canPost=canPost currentUser=currentUser persistentPiece=persistentPiece}}
   </div>
 
   <div class='col-md-3'>
