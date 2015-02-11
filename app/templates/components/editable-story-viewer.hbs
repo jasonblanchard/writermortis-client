@@ -7,9 +7,10 @@
               {{formatted-text visiblePiece.text}}
           </span>
           {{#if canPost}}
-            {{editable-content text=newPiece.text}}
+            {{formatted-text newPiece.text}}
             <br />
             <br />
+            {{textarea placeholder='Continue the story' value=newPiece.text class='form-control'}}
             {{sentence-counter maxSentences=story.maxSentences text=newPiece.text}}
           {{/if}}
         {{/liquid-with}}
