@@ -14,11 +14,11 @@ module('Integration - editable story', {
     // TODO: Set up session with user 1 in it
     
     server = new Pretender(function() {
-      this.get("/api/v2/stories", function(request) {
+      this.get("/api/v1/stories", function(request) {
         return mockResponse.ok(storiesFixtures);
       });
 
-      this.get("/api/v2/user/1", function(request) {
+      this.get("/api/v1/users/1", function(request) {
         return mockResponse.ok(userFixtures);
       });
     });
@@ -30,7 +30,8 @@ module('Integration - editable story', {
 });
 
 test("Should show the last piece to anon user", function() {
-  visit('stories/story/2').then(function() {
+  visit('/stories/2').then(function() {
     equal(find('.story h2').text(), "Second Story");
+    equal($.trim(find('.last-piece').text()), 'there was a little cat named hamburger');
   });
 });

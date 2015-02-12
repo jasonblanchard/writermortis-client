@@ -2,30 +2,31 @@
   <h2>{{story.title}}</h2>
   <div>
     <div class='pieces transition-piece'>
-        {{#liquid-with visiblePiece as visiblePiece}}
-          <span class='transition-piece' {{bind-attr data-author=visiblePiece.user.email}}>
-              {{formatted-text visiblePiece.text}}
-          </span>
-          {{#if canPost}}
-            {{formatted-text newPiece.text}}
-            <br />
-            <br />
-            {{textarea placeholder='Continue the story' value=newPiece.text class='form-control'}}
-            {{sentence-counter maxSentences=story.maxSentences text=newPiece.text}}
-          {{/if}}
-        {{/liquid-with}}
+      {{#liquid-with visiblePiece as visiblePiece}}
+        <span class='last-piece transition-piece' {{bind-attr data-author=visiblePiece.user.email}}>
+          {{formatted-text visiblePiece.text}}
+        </span>
+        {{#if canPost}}
+          {{formatted-text newPiece.text}}
+          <br />
+          <br />
+          {{textarea placeholder='Continue the story' value=newPiece.text class='form-control'}}
+          {{sentence-counter maxSentences=story.maxSentences text=newPiece.text}}
+        {{/if}}
+      {{/liquid-with}}
     </div>
 
-  {{#if canPost}}
-      <div class='hidden-textarea-wrapper'>
-        {{textarea value=newPiece.text}}
-      </div>
-      <br />
-      <button {{action 'createPiece'}} class='btn btn-success'>Create Piece</button>
+    {{#if canPost}}
+    <div class='hidden-textarea-wrapper'>
+      {{textarea value=newPiece.text}}
+    </div>
+    <br />
+    <button {{action 'createPiece'}} class='btn btn-success'>Create Piece</button>
     {{else}}
-      <div>
-        <strong>You can't add a piece right now...</strong>
-      </div>
-  {{/if}}
+    <div>
+      <strong>You can't add a piece right now...</strong>
+    </div>
+    {{/if}}
 
+  </div>
 </div>
