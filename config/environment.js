@@ -43,13 +43,19 @@ module.exports = function(environment) {
 
   }
 
+  if (environment === 'test') {
+    ENV['simple-auth'] = {
+      store: 'simple-auth-session-store:ephemeral'
+    }
+  } else {
+    ENV['simple-auth-devise'] = {
+      serverTokenEndpoint: 'http://localhost:3000/users/sign_in'
+    };
+  }
+
   ENV['simple-auth'] = {
     crossOriginWhitelist: ['http://localhost:3000'],
     authorizer: 'simple-auth-authorizer:devise'
-  };
-
-  ENV['simple-auth-devise'] = {
-    serverTokenEndpoint: 'http://localhost:3000/users/sign_in'
   };
 
   return ENV;

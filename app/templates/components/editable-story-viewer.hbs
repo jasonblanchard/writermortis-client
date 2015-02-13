@@ -16,17 +16,20 @@
       {{/liquid-with}}
     </div>
 
-    {{#if canPost}}
-    <div class='hidden-textarea-wrapper'>
-      {{textarea value=newPiece.text}}
+    <div class='next-action'>
+      {{#if currentUser}}
+        {{#if canPost}}
+        <button {{action 'createPiece'}} class='btn btn-success'>Create Piece</button>
+        {{else}}
+        <div>
+          <strong>You added the last piece!</strong>
+        </div>
+        {{/if}}
+      {{else}}
+        <div>
+          <strong>Sign in the add to this story!</strong>
+        </div>
+      {{/if}}
     </div>
-    <br />
-    <button {{action 'createPiece'}} class='btn btn-success'>Create Piece</button>
-    {{else}}
-    <div>
-      <strong>You can't add a piece right now...</strong>
-    </div>
-    {{/if}}
-
   </div>
 </div>
