@@ -5,11 +5,9 @@ import {
 
 moduleForComponent('editable-story-viewer', 'EditableStoryViewerComponent', {
   // specify the other units that are required for this test
-  needs: ['helper:formatted-text']
+  needs: ['helper:formatted-text', 'helper:liquid-with', 'view:liquid-with', 'view:liquid-child', 'template:liquid-with', 'helper:with-apply']
 });
 
-/**
- * TODO Fix the liquid-with dependency
 test('it renders', function() {
   expect(2);
 
@@ -21,4 +19,3 @@ test('it renders', function() {
   this.append();
   equal(component._state, 'inDOM');
 });
-*/
