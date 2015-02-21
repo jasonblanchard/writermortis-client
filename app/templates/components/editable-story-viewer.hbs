@@ -18,7 +18,7 @@
 
     <div class='next-action'>
       {{#if canPost}}
-        <button {{action 'createPiece'}} class='btn btn-success submit'>Create Piece</button>
+        <button {{bind-attr disabled='isEmpty'}} {{action 'createPiece'}} class='btn btn-success submit'>Create Piece</button>
         {{else}}
         <div>
           <strong>You added the last piece!</strong>
