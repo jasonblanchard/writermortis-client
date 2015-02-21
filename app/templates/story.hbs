@@ -1,7 +1,19 @@
 {{#if piecesLeft}}
 
   <div class='col-md-7 col-md-push-2'>
-    {{editable-story-viewer story=model visiblePiece=visiblePiece newPiece=newPiece canPost=canPost currentUser=currentUser persistentPiece=persistentPiece}}
+    {{#if session.isAuthenticated}}
+      {{editable-story-viewer story=model visiblePiece=visiblePiece newPiece=newPiece canPost=canPost currentUser=currentUser persistentPiece=persistentPiece}}
+    {{else}}
+      <div class='story'>
+        <h2>{{model.title}}</h2>
+        <div class='last-piece'> 
+          {{formatted-text visiblePiece.text}}
+        </div>
+        <div class='next-action'>
+          <strong>Sign in the add to this story!</strong>
+        </div>
+      </div>
+    {{/if}}
   </div>
 
   <div class='col-md-2 col-md-pull-7 piece-stats'>

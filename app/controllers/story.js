@@ -51,5 +51,5 @@ export default Ember.ObjectController.extend({
     } else {
       return false;
     }
-  }.property('currentUser', 'model.pieces.@each'),
+  }.property('currentUser', 'model.pieces.@each', 'session'),
 });

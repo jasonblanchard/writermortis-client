@@ -5,7 +5,7 @@ import currentUserMixin from 'writermortis/mixins/current-user';
 export default Ember.Route.extend(ApplicationRouteMixin, currentUserMixin, {
   actions: {
     sessionAuthenticationSucceeded: function() {
-      this.transitionTo('stories');
+      this.transitionTo('/');
     }
   }
 });

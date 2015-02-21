@@ -17,17 +17,11 @@
     </div>
 
     <div class='next-action'>
-      {{#if session.isAuthenticated}}
-        {{#if canPost}}
+      {{#if canPost}}
         <button {{action 'createPiece'}} class='btn btn-success submit'>Create Piece</button>
         {{else}}
         <div>
           <strong>You added the last piece!</strong>
-        </div>
-        {{/if}}
-      {{else}}
-        <div>
-          <strong>Sign in the add to this story!</strong>
         </div>
       {{/if}}
     </div>
