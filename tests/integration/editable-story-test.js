@@ -64,7 +64,7 @@ test("Should show the story to a user who can post a piece", function() {
   visit('/stories/1').then(function() {
     equal(find('.story h2').text(), "My first story");
     equal($.trim(find('.last-piece').text()), 'This is the start of the second story');
-    equal($.trim(find(".next-action").text()), 'Create Piece');
+    equal($.trim(find(".next-action button").text()), 'Create Piece');
   });
 });
 

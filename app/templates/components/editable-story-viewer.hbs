@@ -11,14 +11,16 @@
           <br />
           <br />
           {{textarea placeholder='Continue the story' value=newPiece.text class='form-control new-piece'}}
-          {{sentence-counter maxSentences=story.maxSentences text=newPiece.text}}
         {{/if}}
       {{/liquid-with}}
     </div>
 
     <div class='next-action'>
       {{#if canPost}}
-        <button {{bind-attr disabled='isEmpty'}} {{action 'createPiece'}} class='btn btn-success submit'>Create Piece</button>
+        <div class='pull-right'>
+          {{sentence-counter maxSentences=story.maxSentences text=newPiece.text}}
+        </div>
+        <button {{bind-attr disabled='isEmpty'}} {{action 'createPiece'}} class='btn btn-success submit pull-left'>Create Piece</button>
         {{else}}
         <div>
           <strong>You added the last piece!</strong>

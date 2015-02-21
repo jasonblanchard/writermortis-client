@@ -8,6 +8,8 @@ export default Ember.ObjectController.extend({
   
   pieces: Ember.computed.alias('model.pieces'),
 
+  story: Ember.computed.alias('model'),
+
   visiblePiece: function() {
     return this.get('pieces').get('lastObject');
   }.property('model', 'pieces'),
