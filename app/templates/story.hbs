@@ -1,6 +1,6 @@
-{{#if piecesLeft}}
 
-  <div class='col-md-7 col-md-push-2'>
+<div class='col-md-7 col-md-push-2'>
+  {{#if piecesLeft}}
     {{#if session.isAuthenticated}}
       {{editable-story-viewer story=model visiblePiece=visiblePiece newPiece=newPiece canPost=canPost action='createPiece'}}
     {{else}}
@@ -14,24 +14,26 @@
         </div>
       </div>
     {{/if}}
-  </div>
+  {{else}}
+    <h2>{{story.title}}</h2>
+    {{#each piece in story.pieces}}
+      <span {{bind-attr data-author=piece.user.email}}>{{formatted-text piece.text}}</span>  
+    {{/each}}
+  {{/if}}
+</div>
 
-  <div class='col-md-2 col-md-pull-7 piece-stats'>
-    <h2>{{currentNumPieces}} / {{totalPieces}} Pieces</h2>
-    <div class="progress">
-      <div class="progress-bar" role="progressbar" {{bind-attr aria-valuenow='percentComplete'}} aria-valuemin="0" aria-valuemax="100" {{bind-attr style='progressBarStyle'}}>
-        <span class="sr-only">{{percentComplete}}% Complete</span>
-      </div>
+<div class='col-md-2 col-md-pull-7 piece-stats'>
+  <h2>{{currentNumPieces}} / {{totalPieces}} Pieces</h2>
+  <div class="progress">
+    <div class="progress-bar" role="progressbar" {{bind-attr aria-valuenow='percentComplete'}} aria-valuemin="0" aria-valuemax="100" {{bind-attr style='progressBarStyle'}}>
+      <span class="sr-only">{{percentComplete}}% Complete</span>
     </div>
   </div>
+</div>
 
-  <div class='col-md-3 participants'>
-    <h2>participants</h2>
-    {{#each participant in participants}}
-      <div>{{participant.email}}</div>
-    {{/each}}
-  </div>
-{{else}}
-  story is done
-  TODO: Add stuff here 
-{{/if}}
+<div class='col-md-3 participants'>
+  <h2>participants</h2>
+  {{#each participant in participants}}
+    <div>{{participant.email}}</div>
+  {{/each}}
+</div>
