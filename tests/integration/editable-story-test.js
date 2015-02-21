@@ -37,8 +37,8 @@ module('Integration - editable story', {
 });
 
 test("Should show the story to an anon user", function() {
+  invalidateSession();
   visit('/stories/2').then(function() {
-    currentSession().set('content', '');
     equal(find('.story h2').text(), "Second Story");
     equal($.trim(find('.last-piece').text()), 'there was a little cat named hamburger');
     equal($.trim(find(".next-action").text()), 'Sign in the add to this story!');

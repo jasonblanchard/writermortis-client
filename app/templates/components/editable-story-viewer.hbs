@@ -17,7 +17,7 @@
     </div>
 
     <div class='next-action'>
-      {{#if currentUser}}
+      {{#if session.isAuthenticated}}
         {{#if canPost}}
         <button {{action 'createPiece'}} class='btn btn-success submit'>Create Piece</button>
         {{else}}
