@@ -7,11 +7,11 @@
           {{formatted-text visiblePiece.text}}
         </span>
         {{#if canPost}}
-          {{formatted-text newPiece.text}}
+          {{formatted-text proxyPiece.text}}
           <br />
           <br />
-          {{textarea placeholder='Continue the story' value=newPiece.text class='form-control new-piece'}}
-          {{sentence-counter maxSentences=story.maxSentences text=newPiece.text}}
+          {{textarea placeholder='Continue the story' value=proxyPiece.text class='form-control new-piece'}}
+          {{sentence-counter maxSentences=story.maxSentences text=proxyPiece.text}}
         {{/if}}
       {{/liquid-with}}
     </div>

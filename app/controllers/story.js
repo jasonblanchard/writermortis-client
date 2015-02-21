@@ -2,32 +2,33 @@ import Ember from 'ember';
 
 export default Ember.ObjectController.extend({
   
-  newPiece: function() {
+  proxyPiece: function() {
     return this.store.createRecord('piece');
   }.property('model'),
   
-  persistentPiece: function() {
+  newPiece: function() {
     return this.store.createRecord('piece');
   }.property('model'),
 
-  visiblePiece: function() {
-    var pieces = this.get('model').get('pieces');
-    return pieces.get('lastObject');
-  }.property('model', 'model.pieces.@each'),
+  pieces: Ember.computed.alias('model.pieces'),
 
-  currentPieceLength: function() {
-    return this.get('model').get('pieces').get('length');
-  }.property('model', 'model.pieces.@each'),
+  visiblePiece: function() {
+    return this.get('pieces').get('lastObject');
+  }.property('model', 'pieces'),
+
+  currentNumPieces: function() {
+    return this.get('pieces').get('length');
+  }.property('model', 'pieces'),
 
   piecesLeft: function() {
     var maxPieces = this.get('totalPieces');
-    var currentPieces = this.get('currentPieceLength');
+    var currentPieces = this.get('currentNumPieces');
     return maxPieces - currentPieces;
-  }.property('model', 'currentPieceLength'),
+  }.property('model', 'currentNumPieces'),
 
   percentComplete: function() {
-    var pieces = this.get('model').get('pieces').get('length');
-    var totalPossible = this.get('model').get('totalPieces');
+    var pieces = this.get('currenNumPieces');
+    var totalPossible = this.get('totalPieces');
     return Math.round((pieces / totalPossible) * 100);
   }.property('piecesLeft'),
 
@@ -47,7 +48,7 @@ export default Ember.ObjectController.extend({
   canPost: function() {
     // FIXME Ugggh
     if ( this.get('currentUser') ) {
-      return this.get('currentUser').id !== this.get('model').get('pieces').get('lastObject').get('user').get('id');
+      return this.get('currentUser').id !== this.get('pieces').get('lastObject').get('user').get('id');
     } else {
       return false;
     }
@@ -56,17 +57,17 @@ export default Ember.ObjectController.extend({
   actions: {
     createPiece: function() {
       var controller = this;
+      var proxyPiece = controller.get('proxyPiece');
       var newPiece = controller.get('newPiece');
-      var persistentPiece = controller.get('persistentPiece');
       var story = controller.get('model');
 
-      persistentPiece.set('user', controller.get('currentUser'));
-      persistentPiece.set('story', story);
-      persistentPiece.set('text', newPiece.get('text'));
+      newPiece.set('user', controller.get('currentUser'));
+      newPiece.set('story', story);
+      newPiece.set('text', proxyPiece.get('text'));
 
-      persistentPiece.save().then(function(piece) {
+      newPiece.save().then(function(piece) {
         story.get('pieces').addObject(piece);
-        newPiece.set('text', '');
+        proxyPiece.set('text', '');
       }).catch(function(response) {
         if (response.responseJSON) {
           console.log(response.responseJSON.errors);

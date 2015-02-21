@@ -2,7 +2,7 @@
 
   <div class='col-md-7 col-md-push-2'>
     {{#if session.isAuthenticated}}
-      {{editable-story-viewer story=model visiblePiece=visiblePiece newPiece=newPiece canPost=canPost action='createPiece'}}
+      {{editable-story-viewer story=model visiblePiece=visiblePiece proxyPiece=proxyPiece canPost=canPost action='createPiece'}}
     {{else}}
       <div class='story'>
         <h2>{{model.title}}</h2>
@@ -17,7 +17,7 @@
   </div>
 
   <div class='col-md-2 col-md-pull-7 piece-stats'>
-    <h2>{{currentPieceLength}} / {{totalPieces}} Pieces</h2>
+    <h2>{{currentNumPieces}} / {{totalPieces}} Pieces</h2>
     <div class="progress">
       <div class="progress-bar" role="progressbar" {{bind-attr aria-valuenow='percentComplete'}} aria-valuemin="0" aria-valuemax="100" {{bind-attr style='progressBarStyle'}}>
         <span class="sr-only">60% Complete</span>
