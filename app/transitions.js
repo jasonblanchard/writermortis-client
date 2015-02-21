@@ -2,7 +2,7 @@ export default function() {
 
   this.transition(
     this.childOf('.transition-piece'),
-    this.use('toUp')
+    this.use('toUp', {duration: 500})
   );
   
 }
