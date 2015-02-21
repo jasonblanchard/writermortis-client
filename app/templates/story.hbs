@@ -20,7 +20,7 @@
     <h2>{{currentNumPieces}} / {{totalPieces}} Pieces</h2>
     <div class="progress">
       <div class="progress-bar" role="progressbar" {{bind-attr aria-valuenow='percentComplete'}} aria-valuemin="0" aria-valuemax="100" {{bind-attr style='progressBarStyle'}}>
-        <span class="sr-only">60% Complete</span>
+        <span class="sr-only">{{percentComplete}}% Complete</span>
       </div>
     </div>
   </div>

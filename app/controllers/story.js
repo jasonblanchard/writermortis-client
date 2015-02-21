@@ -25,10 +25,10 @@ export default Ember.ObjectController.extend({
   }.property('model', 'currentNumPieces'),
 
   percentComplete: function() {
-    var pieces = this.get('currenNumPieces');
+    var pieces = this.get('currentNumPieces');
     var totalPossible = this.get('totalPieces');
     return Math.round((pieces / totalPossible) * 100);
-  }.property('piecesLeft'),
+  }.property('piecesLeft', 'currentNumPieces'),
 
   progressBarStyle: function() {
     return "width: " + this.get('percentComplete') + "%;";
