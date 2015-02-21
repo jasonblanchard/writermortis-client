@@ -2,7 +2,7 @@
 
   <div class='col-md-7 col-md-push-2'>
     {{#if session.isAuthenticated}}
-      {{editable-story-viewer story=model visiblePiece=visiblePiece newPiece=newPiece canPost=canPost currentUser=currentUser persistentPiece=persistentPiece}}
+      {{editable-story-viewer story=model visiblePiece=visiblePiece newPiece=newPiece canPost=canPost action='createPiece'}}
     {{else}}
       <div class='story'>
         <h2>{{model.title}}</h2>

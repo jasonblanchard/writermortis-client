@@ -52,4 +52,26 @@ export default Ember.ObjectController.extend({
       return false;
     }
   }.property('currentUser', 'model.pieces.@each', 'session'),
+
+  actions: {
+    createPiece: function() {
+      var controller = this;
+      var newPiece = controller.get('newPiece');
+      var persistentPiece = controller.get('persistentPiece');
+      var story = controller.get('model');
+
+      persistentPiece.set('user', controller.get('currentUser'));
+      persistentPiece.set('story', story);
+      persistentPiece.set('text', newPiece.get('text'));
+
+      persistentPiece.save().then(function(piece) {
+        story.get('pieces').addObject(piece);
+        newPiece.set('text', '');
+      }).catch(function(response) {
+        if (response.responseJSON) {
+          console.log(response.responseJSON.errors);
+        }
+      });
+    }
+  }
 });
