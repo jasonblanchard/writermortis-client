@@ -4,7 +4,7 @@
     {{editable-story-viewer story=model visiblePiece=visiblePiece newPiece=newPiece canPost=canPost currentUser=currentUser persistentPiece=persistentPiece}}
   </div>
 
-  <div class='col-md-2 col-md-pull-7'>
+  <div class='col-md-2 col-md-pull-7 piece-stats'>
     <h2>{{currentPieceLength}} / {{totalPieces}} Pieces</h2>
     <div class="progress">
       <div class="progress-bar" role="progressbar" {{bind-attr aria-valuenow='percentComplete'}} aria-valuemin="0" aria-valuemax="100" {{bind-attr style='progressBarStyle'}}>
@@ -13,7 +13,7 @@
     </div>
   </div>
 
-  <div class='col-md-3'>
+  <div class='col-md-3 participants'>
     <h2>participants</h2>
     {{#each participant in participants}}
       <div>{{participant.email}}</div>

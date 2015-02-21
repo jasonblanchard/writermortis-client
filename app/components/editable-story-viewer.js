@@ -24,7 +24,9 @@ export default Ember.Component.extend({
         story.get('pieces').addObject(piece);
         newPiece.set('text', '');
       }).catch(function(response) {
-        console.log(response.responseJSON.errors);
+        if (response.responseJSON) {
+          console.log(response.responseJSON.errors);
+        }
       });
     }
 
