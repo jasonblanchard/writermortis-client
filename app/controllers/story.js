@@ -2,14 +2,10 @@ import Ember from 'ember';
 
 export default Ember.ObjectController.extend({
   
-  proxyPiece: function() {
-    return this.store.createRecord('piece');
-  }.property('model'),
-  
   newPiece: function() {
     return this.store.createRecord('piece');
   }.property('model'),
-
+  
   pieces: Ember.computed.alias('model.pieces'),
 
   visiblePiece: function() {
@@ -57,17 +53,15 @@ export default Ember.ObjectController.extend({
   actions: {
     createPiece: function() {
       var controller = this;
-      var proxyPiece = controller.get('proxyPiece');
       var newPiece = controller.get('newPiece');
       var story = controller.get('model');
 
       newPiece.set('user', controller.get('currentUser'));
       newPiece.set('story', story);
-      newPiece.set('text', proxyPiece.get('text'));
+      newPiece.set('text', newPiece.get('text'));
 
       newPiece.save().then(function(piece) {
         story.get('pieces').addObject(piece);
-        proxyPiece.set('text', '');
       }).catch(function(response) {
         if (response.responseJSON) {
           console.log(response.responseJSON.errors);
