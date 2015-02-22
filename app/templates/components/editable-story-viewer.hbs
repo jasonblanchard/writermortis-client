@@ -20,7 +20,7 @@
         <div class='pull-right'>
           {{sentence-counter maxSentences=story.maxSentences text=newPiece.text}}
         </div>
-        <button {{bind-attr disabled='isEmpty'}} {{action 'createPiece'}} class='btn btn-success submit pull-left'>Create Piece</button>
+        <button {{bind-attr disabled='isDisabled'}} {{action 'createPiece'}} class='btn btn-success submit pull-left'>Create Piece</button>
         {{else}}
         <div>
           <strong>You added the last piece!</strong>

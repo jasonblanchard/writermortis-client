@@ -2,9 +2,10 @@ import Ember from 'ember';
 
 export default Ember.Component.extend({
 
-  isEmpty: function() {
+  isDisabled: function() {
     if (this.get('newPiece').get('text')) {
-      return this.get('newPiece').get('text').length <= 0;
+      var text = this.get('newPiece').get('text'); // TODO: Or when there are too many sentences
+      return (text.length <= 0);
     } else {
       return true;
     }
