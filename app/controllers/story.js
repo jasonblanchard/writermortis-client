@@ -52,6 +52,11 @@ export default Ember.ObjectController.extend({
     }
   }.property('currentUser', 'model.pieces.@each', 'session'),
 
+  currentPieceSentenceCount: function() {
+    // TODO wtf
+    return this.container.lookup('service:sentence-counter').count(this.get('newPiece').get('text'));
+  }.property('newPiece.text'),
+
   actions: {
     createPiece: function() {
       var controller = this;

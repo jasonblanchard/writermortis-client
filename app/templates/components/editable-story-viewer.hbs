@@ -18,7 +18,7 @@
     <div class='next-action'>
       {{#if canPost}}
         <div class='pull-right'>
-          {{sentence-counter maxSentences=story.maxSentences text=newPiece.text}}
+          {{sentence-counter maxSentences=story.maxSentences currentPieceSentenceCount=currentPieceSentenceCount}}
         </div>
         <button {{bind-attr disabled='isDisabled'}} {{action 'createPiece'}} class='btn btn-success submit pull-left'>Create Piece</button>
         {{else}}

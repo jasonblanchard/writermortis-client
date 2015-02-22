@@ -20,22 +20,17 @@ test('it renders', function() {
   equal(component._state, 'inDOM');
 });
 
-test('it returns a sentence count', function() {
-  var component = this.subject({text: "This. Has! Three sentences."});
-  equal(component.get('currentSentenceCount'), 3);
-});
-
 test('it applies a warning class when it is under', function() {
-  var component = this.subject({text: "Has. Three! Sentences.", maxSentences: 4});
+  var component = this.subject({currentPieceSentenceCount: 3, maxSentences: 4});
   equal(component.get('warningClass'), 'under');
 });
 
 test('it applies a warning class when it has none', function() {
-  var component = this.subject({text: '', maxSentences: 4});
+  var component = this.subject({currentPieceSentenceCount: 0, maxSentences: 4});
   equal(component.get('warningClass'), 'none');
 });
 
 test('it applies a warning class when it is over', function() {
-  var component = this.subject({text: 'First. Second! Third... Fourth. Fifth?', maxSentences: 4});
+  var component = this.subject({currentPieceSentenceCount: 6, maxSentences: 4});
   equal(component.get('warningClass'), 'over');
 });

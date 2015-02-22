@@ -4,8 +4,8 @@ export default Ember.Component.extend({
 
   isDisabled: function() {
     if (this.get('newPiece').get('text')) {
-      var text = this.get('newPiece').get('text'); // TODO: Or when there are too many sentences
-      return (text.length <= 0);
+      var text = this.get('newPiece').get('text');
+      return (text.length <= 0) || (this.get('currentPieceSentenceCount') > this.get('story').get('maxSentences'));
     } else {
       return true;
     }
