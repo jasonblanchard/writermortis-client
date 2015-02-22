@@ -18,16 +18,6 @@ module('Integration - editable story', {
         return mockResponse.ok(storiesFixtures);
       });
 
-      this.get("/api/v1/users/1", function(request) {
-        return mockResponse.ok(userFixtures.jason);
-      });
-
-      this.get("/api/v1/users/2", function(request) {
-        return mockResponse.ok(userFixtures.lucille);
-      });
-      this.post("/api/v1/pieces/", function(request) {
-        return mockResponse.ok(pieceFixture);
-      });
     });
   },
   teardown: function() {
@@ -36,4 +26,13 @@ module('Integration - editable story', {
   }
 });
 
-// TODO: Test this
+test('It shows a finished story', function() {
+  visit('/stories/3').then(function() {
+    equal($.trim(find('.finished-story h2').text()), "A Short Story");
+    equal(/This is the beginning\./.test(find('.finished-story .story').text()), true);
+    equal(/And this is the end\./.test(find('.finished-story .story').text()), true);
+    equal(find('.piece-stats h2').text(), '2 / 2 Pieces');
+    equal(/lucille@example.com/.test(find('.participants').text()), true);
+    equal(/jason@example.com/.test(find('.participants').text()), true);
+  });
+});

@@ -20,6 +20,20 @@ export default {
             "created_at": "2014-10-22T00:33:35.289Z",
             "updated_at": "2014-10-22T00:33:35.289Z",
             "user_id": 1
+        },
+        {
+            "id": 129,
+            "text": "This is the beginning.",
+            "created_at": "2014-10-22T00:33:35.289Z",
+            "updated_at": "2014-10-22T00:33:35.289Z",
+            "user_id": 1
+        },
+        {
+            "id": 130,
+            "text": "And this is the end.",
+            "created_at": "2014-10-22T00:33:35.289Z",
+            "updated_at": "2014-10-22T00:33:35.289Z",
+            "user_id": 2
         }
     ],
     "users": [
@@ -50,6 +64,16 @@ export default {
             "max_sentences": 3,
             "piece_ids": [
               128
+            ]
+        },
+        {
+            "id": 3,
+            "title": "A Short Story",
+            "total_pieces": 2,
+            "max_sentences": 3,
+            "piece_ids": [
+              129,
+              130
             ]
         }
     ]

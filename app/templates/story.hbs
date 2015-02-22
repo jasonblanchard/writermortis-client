@@ -16,9 +16,11 @@
   {{else}}
     <div class='finished-story'>
       <h2>{{story.title}}</h2>
-      {{#each piece in story.pieces}}
-        <span {{bind-attr data-author=piece.user.email}}>{{formatted-text piece.text}}</span>  
-      {{/each}}
+      <div class='story'>
+        {{#each piece in story.pieces}}
+          <span {{bind-attr data-author=piece.user.email}}>{{formatted-text piece.text}}</span>  
+        {{/each}}
+      </div>
     </div>
   {{/if}}
 </div>
