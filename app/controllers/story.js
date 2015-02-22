@@ -12,7 +12,7 @@ export default Ember.ObjectController.extend({
 
   visiblePiece: function() {
     return this.get('pieces').get('lastObject');
-  }.property('model', 'pieces'),
+  }.property('model', 'pieces', 'model.pieces.@each'),
 
   currentNumPieces: function() {
     return this.get('pieces').get('length');
