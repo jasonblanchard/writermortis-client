@@ -79,8 +79,6 @@ export default Ember.ObjectController.extend({
     },
 
     setActiveAuthor: function(authorId) {
-      console.log("SET ACTIVE AUTHOR");
-      console.log(authorId);
       this.set('activeAuthorId', authorId);
     }
   }
