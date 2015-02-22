@@ -1,7 +1,7 @@
 <div class='col-md-7 col-md-push-2'>
   {{#if piecesLeft}}
     {{#if session.isAuthenticated}}
-      {{editable-story-viewer story=model visiblePiece=visiblePiece newPiece=newPiece canPost=canPost action='createPiece' currentPieceSentenceCount=currentPieceSentenceCount}}
+      {{editable-story-viewer story=model visiblePiece=visiblePiece newPiece=newPiece canPost=canPost createPiece='createPiece' currentPieceSentenceCount=currentPieceSentenceCount}}
     {{else}}
       <div class='story'>
         <h2>{{model.title}}</h2>
@@ -14,14 +14,7 @@
       </div>
     {{/if}}
   {{else}}
-    <div class='finished-story'>
-      <h2>{{story.title}}</h2>
-      <div class='story'>
-        {{#each piece in story.pieces}}
-          <span {{bind-attr data-author=piece.user.email}}>{{formatted-text piece.text}}</span>  
-        {{/each}}
-      </div>
-    </div>
+    {{finished-story story=story setActiveAuthor='setActiveAuthor'}}
   {{/if}}
 </div>
 
@@ -37,6 +30,6 @@
 <div class='col-md-3 participants'>
   <h2>participants</h2>
   {{#each participant in participants}}
-    <div>{{participant.email}}</div>
+    {{participant-viewer participant=participant activeAuthorId=activeAuthorId}}
   {{/each}}
 </div>

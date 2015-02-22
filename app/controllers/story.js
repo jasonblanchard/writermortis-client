@@ -57,6 +57,8 @@ export default Ember.ObjectController.extend({
     return this.container.lookup('service:sentence-counter').count(this.get('newPiece').get('text'));
   }.property('newPiece.text'),
 
+  activeAuthorId: null,
+
   actions: {
     createPiece: function() {
       var controller = this;
@@ -74,6 +76,12 @@ export default Ember.ObjectController.extend({
           console.log(response.responseJSON.errors);
         }
       });
+    },
+
+    setActiveAuthor: function(authorId) {
+      console.log("SET ACTIVE AUTHOR");
+      console.log(authorId);
+      this.set('activeAuthorId', authorId);
     }
   }
 });

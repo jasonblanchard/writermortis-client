@@ -34,3 +34,19 @@
     margin-top: 10px;
   }
 }
+
+.participants {
+  .active {
+    font-weight: bold;
+  }
+}
+
+.finished-story {
+  span {
+    cursor: default;
+
+    &:hover {
+      color: rgb(153, 153, 153);
+    }
+  }
+}

@@ -14,7 +14,7 @@ export default Ember.Component.extend({
   actions: {
 
     createPiece: function() {
-      this.sendAction('action');
+      this.sendAction('createPiece');
     }
 
   }

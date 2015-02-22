@@ -1,0 +1,8 @@
+<div class='finished-story'>
+  <h2>{{story.title}}</h2>
+  <div class='story'>
+    {{#each piece in story.pieces}}
+      {{piece-viewer piece=piece setActiveAuthor='setActiveAuthor'}}
+    {{/each}}
+  </div>
+</div>
