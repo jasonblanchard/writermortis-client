@@ -5,6 +5,7 @@ import currentUserMixin from 'writermortis/mixins/current-user';
 export default Ember.Route.extend(ApplicationRouteMixin, currentUserMixin, {
 
   setupController: function(controller, model) {
+
     // TODO DRY this up w/r/t the current-user mixin
     var session = this.get('session');
     var userId = session.get('content').user_id;
@@ -13,8 +14,6 @@ export default Ember.Route.extend(ApplicationRouteMixin, currentUserMixin, {
         controller.set('currentUser', user);
       });
     }
-
-    controller.set('model', model);
   },
 
   actions: {

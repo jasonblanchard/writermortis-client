@@ -8,9 +8,10 @@ export function initialize(container) {
 
   socket.on("rt-change", function(rawMessage){
     console.log(rawMessage);
-    if (rawMessage.action === 'create') {
-      var type = rawMessage.resource;
-      store.pushPayload(type, rawMessage.data);
+    if (rawMessage.realtime_payload.action === 'create') {
+      var type = rawMessage.realtime_payload.resource;
+      store.pushPayload(type, rawMessage.realtime_payload.data);
+
     }
   });
 }

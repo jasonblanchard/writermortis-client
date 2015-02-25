@@ -47,7 +47,7 @@ export default Ember.ObjectController.extend({
     // FIXME Ugggh
     var currentUser = this.get('controllers.application').get('currentUser');
     if ( currentUser ) {
-      return currentUser.id !== this.get('pieces').get('lastObject').get('user').get('id');
+      return currentUser.get('id') !== this.get('pieces').get('lastObject').get('user').get('id');
     } else {
       return false;
     }
@@ -66,12 +66,13 @@ export default Ember.ObjectController.extend({
       var newPiece = controller.get('newPiece');
       var story = controller.get('model');
 
-      newPiece.set('user', controller.get('currentUser'));
+      newPiece.set('user', controller.get('controllers.application').get('currentUser'));
       newPiece.set('story', story);
       newPiece.set('text', newPiece.get('text'));
 
       newPiece.save().then(function(piece) {
         story.get('pieces').addObject(piece);
+        newPiece.set('text', '');
       }).catch(function(response) {
         if (response.responseJSON) {
           console.log(response.responseJSON.errors);
