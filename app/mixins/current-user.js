@@ -15,10 +15,7 @@ export default Ember.Mixin.create({
 
   // TODO What happens if subclasses redefine setupController?
   setupController: function(controller, model) {
-    //var currentUser = controller.controllerFor('application').get('currentUser');
     controller.needs = ['application'];
-    var currentUser = controller.get('controllers.application').get('currentUser');
     controller.set('model', model);
-    controller.set('currentUser', currentUser);
   }
 });

@@ -45,8 +45,9 @@ export default Ember.ObjectController.extend({
 
   canPost: function() {
     // FIXME Ugggh
-    if ( this.get('currentUser') ) {
-      return this.get('currentUser').id !== this.get('pieces').get('lastObject').get('user').get('id');
+    var currentUser = this.get('controllers.application').get('currentUser');
+    if ( currentUser ) {
+      return currentUser.id !== this.get('pieces').get('lastObject').get('user').get('id');
     } else {
       return false;
     }
