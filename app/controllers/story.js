@@ -63,17 +63,17 @@ export default Ember.ObjectController.extend({
   actions: {
     createPiece: function() {
       var controller = this;
-      var newPiece = controller.get('newPiece');
+      var proxy = controller.get('newPiece');
+      var newPiece = this.store.createRecord('piece');
       var story = controller.get('model');
 
       newPiece.set('user', controller.get('controllers.application').get('currentUser'));
       newPiece.set('story', story);
-      newPiece.set('text', newPiece.get('text'));
+      newPiece.set('text', proxy.get('text'));
 
       newPiece.save().then(function(piece) {
         story.get('pieces').addObject(piece);
-        // TODO Figure out how to proxy this
-        newPiece.set('text', '');
+        proxy.set('text', '');
       }).catch(function(response) {
         if (response.responseJSON) {
           console.log(response.responseJSON.errors);
