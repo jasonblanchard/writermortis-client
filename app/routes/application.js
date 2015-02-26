@@ -4,7 +4,7 @@ import currentUserMixin from 'writermortis/mixins/current-user';
 
 export default Ember.Route.extend(ApplicationRouteMixin, currentUserMixin, {
 
-  setupController: function(controller, model) {
+  setupController: function(controller) {
 
     // TODO DRY this up w/r/t the current-user mixin
     var session = this.get('session');

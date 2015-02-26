@@ -11,7 +11,6 @@ export function initialize(container) {
     if (rawMessage.realtime_payload.action === 'create') {
       var type = rawMessage.realtime_payload.resource;
       store.pushPayload(type, rawMessage.realtime_payload.data);
-
     }
   });
 }

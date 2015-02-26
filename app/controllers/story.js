@@ -51,7 +51,7 @@ export default Ember.ObjectController.extend({
     } else {
       return false;
     }
-  }.property('currentUser', 'model.pieces.@each', 'session'),
+  }.property('controllers.application.currentUser', 'model.pieces.@each', 'session'),
 
   currentPieceSentenceCount: function() {
     // TODO wtf
@@ -72,6 +72,7 @@ export default Ember.ObjectController.extend({
 
       newPiece.save().then(function(piece) {
         story.get('pieces').addObject(piece);
+        // TODO Figure out how to proxy this
         newPiece.set('text', '');
       }).catch(function(response) {
         if (response.responseJSON) {
