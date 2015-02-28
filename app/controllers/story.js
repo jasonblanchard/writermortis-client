@@ -1,6 +1,8 @@
 import Ember from 'ember';
 
 export default Ember.ObjectController.extend({
+
+  needs: 'application',
   
   newPiece: function() {
     return this.store.createRecord('piece');
@@ -47,11 +49,11 @@ export default Ember.ObjectController.extend({
     // FIXME Ugggh
     var currentUser = this.get('controllers.application').get('currentUser');
     if ( currentUser ) {
-      return currentUser.get('id') !== this.get('pieces').get('lastObject').get('user').get('id');
+      return String(currentUser.get('id')) !== this.get('pieces').get('lastObject').get('user').get('id');
     } else {
       return false;
     }
-  }.property('controllers.application.currentUser', 'model.pieces.@each', 'session'),
+  }.property('controllers.application.currentUser', 'model.pieces.@each'),
 
   currentPieceSentenceCount: function() {
     // TODO wtf

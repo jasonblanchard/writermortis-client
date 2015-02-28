@@ -48,7 +48,8 @@ test("Should show the story to an anon user", function() {
 
 test("Should show the story to user who posted last piece", function() {
   authenticateSession();
-  currentSession().set('content', {user_id: 1});
+  //currentSession().set('content', {user_id: .});
+  currentSession().set('currentUser', Ember.Object.create({id: 1}));
 
   visit('/stories/2').then(function() {
     equal(find('.story h2').text(), "Second Story");
