@@ -20,7 +20,7 @@ export default Ember.Controller.extend({
       story.save().then(function(story) {
         piece.set('story', story);
         piece.save().then(function() {
-          controller.transitionTo('story', story);
+          controller.transitionToRoute('story', story);
         });
       });
 

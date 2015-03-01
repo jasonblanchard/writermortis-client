@@ -99,7 +99,7 @@ export default Ember.ObjectController.extend({
     destroy: function() {
       var controller = this;
       this.get('model').destroyRecord().then(function() {
-        controller.transitionTo('stories');
+        controller.transitionToRoute('stories');
       });
     }
   }

@@ -5,11 +5,11 @@ export default Ember.Route.extend(ApplicationRouteMixin, {
 
   actions: {
     sessionAuthenticationSucceeded: function() {
-      this.transitionTo('stories');
+      this.transitionToRoute('stories');
     },
 
     sessionInvalidationSucceeded: function() {
-      this.transitionTo('stories');
+      this.transitionToRoute('stories');
     }
   }
 });
