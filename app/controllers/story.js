@@ -3,6 +3,8 @@ import Ember from 'ember';
 export default Ember.ObjectController.extend({
 
   needs: 'application',
+
+  currentUser: Ember.computed.alias('controllers.application.currentUser'),
   
   newPiece: function() {
     return this.store.createRecord('piece');
@@ -21,14 +23,14 @@ export default Ember.ObjectController.extend({
   }.property('model', 'pieces'),
 
   piecesLeft: function() {
-    var maxPieces = this.get('totalPieces');
+    var maxPieces = this.get('model').get('totalPieces');
     var currentPieces = this.get('currentNumPieces');
     return maxPieces - currentPieces;
   }.property('model', 'currentNumPieces'),
 
   percentComplete: function() {
     var pieces = this.get('currentNumPieces');
-    var totalPossible = this.get('totalPieces');
+    var totalPossible = this.get('model').get('totalPieces');
     return Math.round((pieces / totalPossible) * 100);
   }.property('piecesLeft', 'currentNumPieces'),
 
@@ -41,11 +43,8 @@ export default Ember.ObjectController.extend({
   }.property('piecesLeft'),
 
   participants: function() {
-    var story = this.get('model');
-    return story.get('pieces').mapBy('user').uniq();
+    return this.get('pieces').mapBy('user').uniq();
   }.property('model', 'model.pieces.@each'),
-
-  currentUser: Ember.computed.alias('controllers.application.currentUser'),
 
   canPost: function() {
     var currentUser = this.get('currentUser');
@@ -57,7 +56,6 @@ export default Ember.ObjectController.extend({
     }
   }.property('currentUser.id', 'model.pieces.@each'),
  
-
   currentPieceSentenceCount: function() {
     // TODO wtf
     return this.container.lookup('service:sentence-counter').count(this.get('newPiece').get('text'));
