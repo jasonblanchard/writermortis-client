@@ -55,7 +55,8 @@ export default {
             "piece_ids": [
                 1,
                 2
-            ]
+            ],
+            "user_id": 1
         },
         {
             "id": 1,
@@ -64,7 +65,8 @@ export default {
             "max_sentences": 3,
             "piece_ids": [
               128
-            ]
+            ],
+            "user_id": 1
         },
         {
             "id": 3,
