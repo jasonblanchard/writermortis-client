@@ -1,0 +1,21 @@
+<div class='col-md-6'>
+  <form {{action 'createStory' on='submit'}}>
+    <div class="form-group">
+      <label>Title</label>
+      {{input type='text' value=newStory.title class='form-control'}}
+    </div>
+    <div class="form-group">
+      <label>Total Pieces</label>
+      {{input type='text' value=newStory.totalPieces class='form-control'}}
+    </div>
+    <div class="form-group">
+      <label>Max Sentences for Each Piece</label>
+      {{input type='text' value=newStory.maxSentences class='form-control'}}
+    </div>
+    <div class="form-group">
+      <label>How should it start?</label>
+      {{textarea value=firstPiece.text placeholder='Once upon a time...' class='form-control'}}
+    </div>
+    <button type='submit' class='btn btn-default'>Create</button>
+  </form>
+</div>

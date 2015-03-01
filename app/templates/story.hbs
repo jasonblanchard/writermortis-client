@@ -33,4 +33,7 @@
       <span class='sub'>{{participant-viewer participant=participant activeAuthorId=activeAuthorId}}</span>
     {{/each}}
   </div>
+  {{#if canDelete}}
+    <button {{action 'destroy'}} class='btn btn-default'>Delete</button>
+  {{/if}}
 </div>

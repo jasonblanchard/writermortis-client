@@ -9,6 +9,7 @@ Router.map(function() {
   this.route('login');
   this.resource('stories', { path: 'stories' }, function() { 
     this.resource('story', { path: '/:story_id' });
+    this.route('new', {path: '/new'});
   });
   this.resource('stories', function() { });
 });

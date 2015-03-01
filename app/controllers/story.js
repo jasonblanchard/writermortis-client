@@ -62,6 +62,15 @@ export default Ember.ObjectController.extend({
 
   activeAuthorId: null,
 
+  canDelete: function() {
+    var currentUser = this.get('currentUser');
+    if (currentUser && currentUser.get('id') !== undefined) {
+      return this.get('model').get('user').get('id') === this.get('currentUser').get('id');
+    } else {
+      return false;
+    }
+  }.property('model', 'currentUser.id'),
+
   actions: {
     createPiece: function() {
       var controller = this;
@@ -85,6 +94,13 @@ export default Ember.ObjectController.extend({
 
     setActiveAuthor: function(authorId) {
       this.set('activeAuthorId', authorId);
+    },
+
+    destroy: function() {
+      var controller = this;
+      this.get('model').destroyRecord().then(function() {
+        controller.transitionTo('stories');
+      });
     }
   }
 });
