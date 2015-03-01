@@ -1,6 +1,5 @@
 export function initialize(container, application) {
-  application.inject('route', 'sentenceCounterService', 'service:sentence-counter');
-  application.inject('controller', 'sentenceCounterService', 'service:sentence-counter');
+  application.inject('controller:story', 'sentenceCounterService', 'service:sentence-counter');
 }
 
 export default {
