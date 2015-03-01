@@ -1,6 +1,11 @@
 @import "bootstrap";
 
 html, body {
+  font-family: 'Alegreya', serif;
+}
+
+h1, h2 {
+  font-weight: 900;
 }
 
 .sub {
@@ -16,23 +21,20 @@ html, body {
   float: left;
 }
 
-/* Cearfix */
-.cf:before,
-.cf:after {
-    content: " "; /* 1 */
-    display: table; /* 2 */
+.navbar-brand,
+.navbar-nav li a {
+    line-height: 30px;
+    height: 30px;
+    padding-top: 0;
 }
 
-.cf:after {
-    clear: both;
+.navbar {
+  min-height: 30px;
+  margin-bottom: 10px;
 }
 
-/**
- * For IE 6/7 only
- * Include this rule to trigger hasLayout and contain floats.
- */
-.cf {
-    *zoom: 1;
+.progress {
+  height: 12px;
 }
 
 @import "story";
