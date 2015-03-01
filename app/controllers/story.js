@@ -45,15 +45,18 @@ export default Ember.ObjectController.extend({
     return story.get('pieces').mapBy('user').uniq();
   }.property('model', 'model.pieces.@each'),
 
+  currentUser: Ember.computed.alias('controllers.application.currentUser'),
+
   canPost: function() {
-    // FIXME Ugggh
-    var currentUser = this.get('controllers.application').get('currentUser');
-    if ( currentUser ) {
-      return String(currentUser.get('id')) !== this.get('pieces').get('lastObject').get('user').get('id');
+    var currentUser = this.get('currentUser');
+    if (currentUser && currentUser.get('id') !== undefined) {
+      // FIXME Ugggh
+      return String(currentUser.get('id')) !== String(this.get('pieces').get('lastObject').get('user').get('id'));
     } else {
       return false;
     }
-  }.property('controllers.application.currentUser', 'model.pieces.@each'),
+  }.property('currentUser.id', 'model.pieces.@each'),
+ 
 
   currentPieceSentenceCount: function() {
     // TODO wtf

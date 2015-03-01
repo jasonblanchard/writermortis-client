@@ -13,6 +13,7 @@ module('CurrentUserInitializer', {
   }
 });
 
+
 // Replace this with your real tests.
 test('it works', function() {
   initialize(container, application);

@@ -3,6 +3,7 @@ import Session from "simple-auth/session";
 
 export default {
   name: 'current-user',
+  before: 'simple-auth',
   initialize: function(container) {
     Session.reopen({
       currentUser: function() {
