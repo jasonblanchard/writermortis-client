@@ -1,6 +1,9 @@
-<h1 class='test'>ALL TEH STORIES</h1>
+<div class='col-md-12'>
+  <h2 class='test'><small>ALL TEH STORIES</small></h2>
 
-{{#each story in model}}
-  <h2>{{story.title}}</h2>
-  {{#link-to 'story' story}}Ohh, take me there{{/link-to}}
-{{/each}}
+  {{#each story in model}}
+    <div>
+      {{#link-to 'story' story}}{{story.title}}{{/link-to}}
+    </div>
+  {{/each}}
+</div>
