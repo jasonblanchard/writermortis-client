@@ -1,5 +1,10 @@
 <div class='story editable'>
-  <h2>{{story.title}}</h2>
+  <h2>
+    {{story.title}}
+    {{#if canDelete}}
+      <button {{action 'destroy'}} class='delete-story btn btn-default btn-xs'>Delete</button>
+    {{/if}}
+  </h2>
   <div>
     <div class='pieces transition-piece'>
       {{#liquid-with visiblePiece as visiblePiece}}

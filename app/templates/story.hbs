@@ -1,10 +1,15 @@
 <div class='col-md-8'>
   {{#if piecesLeft}}
     {{#if session.isAuthenticated}}
-      {{editable-story-viewer story=model visiblePiece=visiblePiece newPiece=newPiece canPost=canPost createPiece='createPiece' currentPieceSentenceCount=currentPieceSentenceCount}}
+      {{editable-story-viewer story=model visiblePiece=visiblePiece newPiece=newPiece canPost=canPost createPiece='createPiece' currentPieceSentenceCount=currentPieceSentenceCount canDelete=canDelete}}
     {{else}}
       <div class='story'>
-        <h2>{{model.title}}</h2>
+        <h2>
+          {{model.title}}
+          {{#if canDelete}}
+            <button {{action 'destroy'}} class='delete-story btn btn-default btn-xs'>Delete</button>
+          {{/if}}
+        </h2>
         <div class='last-piece'> 
           {{formatted-text visiblePiece.text}}
         </div>
@@ -33,7 +38,4 @@
       <span class='sub'>{{participant-viewer participant=participant activeAuthorId=activeAuthorId}}</span>
     {{/each}}
   </div>
-  {{#if canDelete}}
-    <button {{action 'destroy'}} class='btn btn-default'>Delete</button>
-  {{/if}}
 </div>
