@@ -1,7 +1,8 @@
 .story { 
 
   .pieces {
-    line-height: 1.2;
+    line-height: 2;
+    font-size: 1.2em;
   }
 
   .hidden-textarea-wrapper {
@@ -48,5 +49,22 @@
     &:hover {
       color: rgb(153, 153, 153);
     }
+  }
+}
+
+.redact-line {
+  display: inline;
+  background-color: #F6F6F6;
+  border-bottom: 1px solid #EEEEEE;
+  border-radius: 2px;
+  position: relative;
+
+  &.top {
+    width: 150px;
+    margin-right: 4px;
+  }
+
+  &.bottom {
+    width: 150px;
   }
 }

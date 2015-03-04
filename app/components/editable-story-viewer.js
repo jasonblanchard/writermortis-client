@@ -11,11 +11,32 @@ export default Ember.Component.extend({
     }
   }.property('newPiece.text'),
 
+  redactedTopPlaceholder: function() {
+    return new Array(45);
+  }.property(),
+
+  redactedBottomPlaceholder: function() {
+    return new Array(250);
+  }.property(),
+
+  isEditing: false,
+
   actions: {
 
     createPiece: function() {
       this.sendAction('createPiece');
-    }
+      this.set('isEditing', false);
+    },
+
+    startEditing: function() {
+      // TODO Figure out how to bind this to textarea focus event
+      this.set('isEditing', true);
+    },
+
+    focusOnTextarea: function() {
+      this.$('textarea.new-piece').click();
+      this.$('textarea.new-piece').focus();
+    },
 
   }
 });
