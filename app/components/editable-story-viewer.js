@@ -12,7 +12,7 @@ export default Ember.Component.extend({
   }.property('newPiece.text'),
 
   redactedTopPlaceholder: function() {
-    return new Array(45);
+    return new Array(145);
   }.property(),
 
   redactedBottomPlaceholder: function() {

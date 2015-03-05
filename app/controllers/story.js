@@ -82,8 +82,7 @@ export default Ember.ObjectController.extend({
       newPiece.set('story', story);
       newPiece.set('text', proxy.get('text'));
 
-      newPiece.save().then(function(piece) {
-        story.get('pieces').addObject(piece);
+      newPiece.save().then(function() {
         proxy.set('text', '');
       }).catch(function(response) {
         if (response.responseJSON) {
