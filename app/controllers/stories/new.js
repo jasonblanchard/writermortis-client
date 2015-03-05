@@ -11,25 +11,30 @@ export default Ember.Controller.extend(EmberValidations.Mixin, {
   }.property(),
 
   validations: {
-    'title': {
-      'presence': true,
-      'length': { maximum: 50 }
+    title: {
+      presence: true,
+      length: { maximum: 50 }
     }
   },
 
+  showErrors: false,
+
   actions: {
     createStory: function() {
-      debugger;
       var controller = this;
       var story = this.get('newStory');
       var piece = this.get('firstPiece');
 
-      story.save().then(function(story) {
-        piece.set('story', story);
-        piece.save().then(function() {
-          controller.transitionToRoute('story', story);
+      if (controller.get('isValid') === true) {
+        story.save().then(function(story) {
+          piece.set('story', story);
+          piece.save().then(function() {
+            controller.transitionToRoute('story', story);
+          });
         });
-      });
+      } else {
+        controller.set('showErrors', true);
+      }
 
     }
   }

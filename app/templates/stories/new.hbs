@@ -2,6 +2,7 @@
   <form {{action 'createStory' on='submit'}}>
     <div class="form-group">
       <label for='title'>Title</label>
+      {{#if showErrors}}<span class='errors'>{{model.errors.title}}</span>{{/if}}
       {{input type='text' value=newStory.title class='form-control' name='title'}}
     </div>
     <div class="form-group">
