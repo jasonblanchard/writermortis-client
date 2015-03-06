@@ -8,44 +8,36 @@
   <div>
     <div class='pieces transition-piece'>
       {{#liquid-with visiblePiece as visiblePiece}}
-        <div class='unfinished-story-text'>
-          <span class='redact-line top'>
-            {{#each placeholder in redactedTopPlaceholder}}
-              &nbsp;
-            {{/each}}
-          </span>
-          <span class='last-piece transition-piece' {{bind-attr data-author=visiblePiece.user.email}}>
-            {{formatted-text visiblePiece.text}}
-          </span>
-          {{#unless isEditing}}
-            <span class='redact-line bottom' {{action 'focusOnTextarea'}}>
-              {{#each placeholder in redactedBottomPlaceholder}}
-                &nbsp;
-              {{/each}}
-            </span>
-          {{/unless}}
-          {{#if canPost}}
-            {{formatted-text newPiece.text}}
-            <br />
-            <br />
-            <div class='form' {{action 'startEditing'}}>
-              {{textarea placeholder='Continue the story' value=newPiece.text class='form-control new-piece'}}
-            </div>
-          {{/if}}
+      <div class='unfinished-story-text'>
+        {{redacted-line small=true}}&nbsp
+        <span class='last-piece transition-piece' {{bind-attr data-author=visiblePiece.user.email}}>
+          {{formatted-text visiblePiece.text}}
+        </span>
+        {{#unless isEditing}}
+        {{redacted-line action='focusOnTextarea' large=true}}
+        {{/unless}}
+        {{#if canPost}}
+        {{formatted-text newPiece.text}}
+        <br />
+        <br />
+        <div class='form' {{action 'startEditing'}}>
+          {{textarea placeholder='Continue the story' value=newPiece.text class='form-control new-piece'}}
         </div>
+        {{/if}}
+      </div>
       {{/liquid-with}}
     </div>
 
     <div class='next-action clearfix'>
       {{#if canPost}}
-        <div class='pull-right'>
-          {{sentence-counter maxSentences=story.maxSentences currentPieceSentenceCount=currentPieceSentenceCount}}
-        </div>
-        <button {{bind-attr disabled='isDisabled'}} {{action 'createPiece'}} class='btn btn-success submit pull-left'>Create Piece</button>
-        {{else}}
-        <div>
-          <strong>You added the last piece!</strong>
-        </div>
+      <div class='pull-right'>
+        {{sentence-counter maxSentences=story.maxSentences currentPieceSentenceCount=currentPieceSentenceCount}}
+      </div>
+      <button {{bind-attr disabled='isDisabled'}} {{action 'createPiece'}} class='btn btn-success submit pull-left'>Create Piece</button>
+      {{else}}
+      <div>
+        <strong>You added the last piece!</strong>
+      </div>
       {{/if}}
     </div>
   </div>
