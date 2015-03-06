@@ -2,7 +2,7 @@
   <form {{action 'createStory' on='submit'}}>
     <div class="form-group">
       <label for='title'>Title</label>
-      {{#if showErrors}}<span class='errors'>{{model.errors.title}}</span>{{/if}}
+      {{#if showErrors}}<span class='errors'>{{errors.model.title}}</span>{{/if}}
       {{input type='text' value=newStory.title class='form-control' name='title'}}
     </div>
     <div class="form-group">
@@ -15,7 +15,10 @@
     </div>
     <div class="form-group">
       <label>How should it start?</label>
+      {{#if showErrors}}<span class='errors'>{{errors.firstPiece.text}}</span>{{/if}}
+      {{#if showErrors}}<span class='errors'>{{errors.firstPiece.sentenceCount}}</span>{{/if}}
       {{textarea value=firstPiece.text placeholder='Once upon a time...' class='form-control' name='first-piece'}}
+      {{sentence-counter maxSentences=newStory.maxSentences currentPieceSentenceCount=currentPieceSentenceCount}}
     </div>
     <button type='submit' class='btn btn-default'>Create</button>
   </form>

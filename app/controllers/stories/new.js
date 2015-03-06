@@ -10,11 +10,28 @@ export default Ember.Controller.extend(EmberValidations.Mixin, {
     return this.store.createRecord('piece');
   }.property(),
 
+  currentPieceSentenceCount: function() {
+    return this.get('firstPiece').get('sentenceCount');
+  }.property('firstPiece.text'),
+
   validations: {
-    title: {
+    'model.title': {
       presence: true,
       length: { maximum: 50 }
+    },
+    'firstPiece.text': {
+      presence: true
+    },
+    'firstPiece.sentenceCount': {
+      inline: EmberValidations.validator(function() {
+        if (this.get('model').get('newStory')) {
+          if (this.get('model').get('firstPiece').get('sentenceCount') > this.get('model').get('newStory').get('maxSentences')) {
+            return "Too many sentences!";
+          }
+        }
+      })
     }
+
   },
 
   showErrors: false,
@@ -33,6 +50,7 @@ export default Ember.Controller.extend(EmberValidations.Mixin, {
           });
         });
       } else {
+        console.log(this.get('errors'));
         controller.set('showErrors', true);
       }
 

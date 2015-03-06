@@ -1,5 +1,7 @@
 export function initialize(container, application) {
-  application.inject('controller:story', 'sentenceCounterService', 'service:sentence-counter');
+  application.inject('controller', 'sentenceCounterService', 'service:sentence-counter');
+  container.register('service:sentence-counter', 'sentenceCounterService');
+  container.injection('model', 'sentenceCounterService', 'service:sentence-counter');
 }
 
 export default {

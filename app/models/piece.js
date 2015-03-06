@@ -5,5 +5,9 @@ export default DS.Model.extend({
   createdAt: DS.attr('date'),
   updatedAt: DS.attr('date'),
   story: DS.belongsTo('story'),
-  user: DS.belongsTo('user')
+  user: DS.belongsTo('user'),
+
+  sentenceCount: function() {
+    return this.get('sentenceCounterService').count(this.get('text'));
+  }.property('text')
 });
