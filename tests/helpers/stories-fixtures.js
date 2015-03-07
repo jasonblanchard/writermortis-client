@@ -76,7 +76,8 @@ export default {
             "piece_ids": [
               129,
               130
-            ]
+            ],
+            "user_id": 1
         }
     ]
 };

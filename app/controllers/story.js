@@ -95,7 +95,7 @@ export default Ember.ObjectController.extend({
       this.set('activeAuthorId', authorId);
     },
 
-    destroy: function() {
+    destroyStory: function() {
       var controller = this;
       this.get('model').destroyRecord().then(function() {
         controller.transitionToRoute('stories');

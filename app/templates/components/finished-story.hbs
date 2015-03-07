@@ -1,5 +1,10 @@
 <div class='finished-story'>
-  <h2>{{story.title}}</h2>
+  <h2>
+    {{story.title}}
+    {{#if canDelete}}
+      <button {{action 'destroyStory'}} class='delete-story btn btn-default btn-xs'>Delete</button>
+    {{/if}}
+  </h2>
   <div class='story'>
     {{#each piece in story.pieces}}
       {{piece-viewer piece=piece setActiveAuthor='setActiveAuthor'}}

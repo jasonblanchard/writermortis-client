@@ -28,6 +28,9 @@ module('Integration - editable story', {
       this.post("/api/v1/pieces/", function(request) {
         return mockResponse.ok(pieceFixture);
       });
+      this.delete("/api/v1/stories/1", function(request) {
+        return [204, { 'Content-Type': 'application/json' }, JSON.stringify({})];
+      });
     });
   },
   teardown: function() {
@@ -84,5 +87,17 @@ test("Should allow user who can post a piece to add a piece", function() {
     equal($.trim(find(".next-action").text()), 'You added the last piece!');
     equal(/lucille@example.com/.test(find('.participants').text()), true);
   });
+});
 
+test("Owner can destroy story", function() {
+  authenticateSession();
+  currentSession().set('content', {user_id: 1});
+
+  visit('/stories/1');
+  click('.delete-story');
+
+  andThen(function() {
+     equal(currentRouteName(), 'stories.index');
+     equal(/My first story/.test(find('body').text()), false);
+  });
 });

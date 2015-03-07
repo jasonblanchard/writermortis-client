@@ -4,6 +4,10 @@ export default Ember.Component.extend({
   actions: {
     setActiveAuthor: function(authorId) {
       this.sendAction('setActiveAuthor', authorId);
+    },
+
+    destroyStory: function() {
+      this.sendAction('destroyStory');
     }
   }
 });

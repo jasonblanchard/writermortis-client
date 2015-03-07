@@ -38,5 +38,9 @@ export default Ember.Component.extend({
       this.$('textarea.new-piece').focus();
     },
 
+    destroyStory: function() {
+      this.sendAction('destroyStory');
+    }
+
   }
 });

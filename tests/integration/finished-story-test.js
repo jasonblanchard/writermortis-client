@@ -18,6 +18,13 @@ module('Integration - editable story', {
         return mockResponse.ok(storiesFixtures);
       });
 
+      this.get("/api/v1/users/1", function(request) {
+        return mockResponse.ok(userFixtures.jason);
+      });
+
+      this.delete("/api/v1/stories/3", function(request) {
+        return [204, { 'Content-Type': 'application/json' }, JSON.stringify({})];
+      });
     });
   },
   teardown: function() {
@@ -34,5 +41,18 @@ test('It shows a finished story', function() {
     equal(find('.piece-stats h2').text(), '2 / 2 Pieces');
     equal(/lucille@example.com/.test(find('.participants').text()), true);
     equal(/jason@example.com/.test(find('.participants').text()), true);
+  });
+});
+
+test("The owner can delete it", function() {
+  authenticateSession();
+  currentSession().set('content', {user_id: 1});
+
+  visit('/stories/3');
+  click('.delete-story');
+
+  andThen(function() {
+     equal(currentRouteName(), 'stories.index');
+     equal(/My first story/.test(find('body').text()), false);
   });
 });
