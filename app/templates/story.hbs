@@ -1,26 +1,16 @@
-<div class='col-md-8'>
+<div class='col-md-9'>
   {{#if piecesLeft}}
     {{#if session.isAuthenticated}}
       {{editable-story-viewer story=model visiblePiece=visiblePiece newPiece=newPiece canPost=canPost createPiece='createPiece' currentPieceSentenceCount=currentPieceSentenceCount canDelete=canDelete destroyStory='destroyStory'}}
     {{else}}
-      <div class='story'>
-      <h2>{{model.title}}</h2>
-        <div class='last-piece unfinished-story-text pieces'> 
-          {{redacted-line small=true}}&nbsp
-          {{formatted-text visiblePiece.text}}
-          {{redacted-line large=true}}
-        </div>
-        <div class='next-action clearfix'>
-          <strong>Sign in the add to this story!</strong>
-        </div>
-      </div>
+      {{anonymous-user-story-viewer model=model visiblePiece=visiblePiece}}
     {{/if}}
   {{else}}
     {{finished-story story=story setActiveAuthor='setActiveAuthor' canDelete=canDelete destroyStory='destroyStory'}}
   {{/if}}
 </div>
 
-<div class='col-md-4 participants'>
+<div class='col-md-3 participants'>
   <div class='piece-stats'>
     <h2><small>{{currentNumPieces}} / {{totalPieces}} Pieces</small></h2>
     <div class="progress">
