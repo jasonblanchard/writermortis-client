@@ -58,6 +58,19 @@ test("Should allow a logged in user to create a story", function() {
   });
 });
 
+test("It runs validations", function() {
+  authenticateSession();
+  currentSession().set('currentUser', Ember.Object.create({id: "1"}));
+
+  visit('/stories/new');
+  click("[type='submit']");
+
+  andThen(function() {
+    equal($.trim(find('.form-group.title .errors').text()), "can't be blank");
+    equal($.trim(find('.form-group.first-piece .errors').text()), "can't be blank");
+  });
+});
+
 test("Should redirect to login for anon users", function() {
   invalidateSession();
 

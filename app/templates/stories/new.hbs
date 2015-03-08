@@ -1,23 +1,35 @@
 <div class='col-md-6'>
   <form {{action 'createStory' on='submit'}}>
-    <div class="form-group">
+    <div class="form-group title">
       <label for='title'>Title</label>
-      {{#if showErrors}}<span class='errors'>{{errors.model.title}}</span>{{/if}}
-      {{input type='text' value=newStory.title class='form-control' name='title'}}
+      {{#if showErrors}}
+        {{#each error in errors.model.title}}
+          <span class='errors'>{{error}}<rspan>
+        {{/each}}
+      {{/if}}
+      {{input id='title' type='text' value=newStory.title class='form-control' name='title'}}
     </div>
     <div class="form-group">
-      <label>Total Pieces</label>
-      {{input type='text' value=newStory.totalPieces class='form-control' name='total-pieces'}}
+      <label for='total-pieces'>Total Pieces</label>
+      {{input type='text' id='total-pieces' value=newStory.totalPieces class='form-control' name='total-pieces'}}
     </div>
     <div class="form-group">
-      <label>Max Sentences for Each Piece</label>
-      {{input type='text' value=newStory.maxSentences class='form-control' name='max-sentences'}}
+      <label for='max-sentences'>Max Sentences for Each Piece</label>
+      {{input type='text' id='max-sentences' value=newStory.maxSentences class='form-control' name='max-sentences'}}
     </div>
-    <div class="form-group">
-      <label>How should it start?</label>
-      {{#if showErrors}}<span class='errors'>{{errors.firstPiece.text}}</span>{{/if}}
-      {{#if showErrors}}<span class='errors'>{{errors.firstPiece.sentenceCount}}</span>{{/if}}
-      {{textarea value=firstPiece.text placeholder='Once upon a time...' class='form-control' name='first-piece'}}
+    <div class="form-group first-piece">
+      <label for='first-piece'>How should it start?</label>
+
+      {{#if showErrors}}
+        {{#each error in errors.firstPiece.text}}
+          <span class='errors'>{{error}}</span>
+        {{/each}}
+        {{#each error in errors.firstPiece.sentenceCount}}
+          <span class='errors'>{{error}}</span>
+        {{/each}}
+      {{/if}}
+
+      {{textarea id='first-piece' value=firstPiece.text placeholder='Once upon a time...' class='form-control' name='first-piece'}}
       {{sentence-counter maxSentences=newStory.maxSentences currentPieceSentenceCount=currentPieceSentenceCount}}
     </div>
     <button type='submit' class='btn btn-default'>Create</button>
