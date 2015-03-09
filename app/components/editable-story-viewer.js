@@ -40,6 +40,10 @@ export default Ember.Component.extend({
 
     destroyStory: function() {
       this.sendAction('destroyStory');
+    },
+
+    undo: function() {
+      this.sendAction('undo');
     }
 
   }

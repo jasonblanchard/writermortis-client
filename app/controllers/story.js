@@ -71,6 +71,8 @@ export default Ember.ObjectController.extend({
     }
   }.property('model', 'currentUser.id'),
 
+  isEditing: false,
+
   actions: {
     createPiece: function() {
       var controller = this;
@@ -99,6 +101,18 @@ export default Ember.ObjectController.extend({
       var controller = this;
       this.get('model').destroyRecord().then(function() {
         controller.transitionToRoute('stories');
+      });
+    },
+
+    undo: function() {
+      var controller = this;
+      var lastPiece = controller.get('visiblePiece');
+      var newPiece = controller.get('newPiece');
+
+      newPiece.set('text', lastPiece.get('text'));
+
+      lastPiece.destroyRecord().then(function() {
+        controller.set('isEditing', true);
       });
     }
   }

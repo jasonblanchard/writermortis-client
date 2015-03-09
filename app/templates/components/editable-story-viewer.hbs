@@ -36,7 +36,7 @@
       <button {{bind-attr disabled='isDisabled'}} {{action 'createPiece'}} class='btn btn-success submit pull-left'>Create Piece</button>
       {{else}}
       <div>
-        <strong>You added the last piece!</strong>
+        <strong>You added the last piece!</strong> <button class='btn btn-default btn-xs undo-new-piece' {{action 'undo'}}>Undo</button>
       </div>
       {{/if}}
     </div>

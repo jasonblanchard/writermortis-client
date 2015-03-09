@@ -31,6 +31,9 @@ module('Integration - editable story', {
       this.delete("/api/v1/stories/1", function(request) {
         return [204, { 'Content-Type': 'application/json' }, JSON.stringify({})];
       });
+      this.delete("/api/v1/pieces/138", function(request) {
+        return [204, { 'Content-Type': 'application/json' }, JSON.stringify({})];
+      });
     });
   },
   teardown: function() {
@@ -56,7 +59,7 @@ test("Should show the story to user who posted last piece", function() {
   visit('/stories/2').then(function() {
     equal(/Second Story/.test($.trim(find('.story h2').text())), true);
     equal($.trim(find('.last-piece').text()), 'there was a little cat named hamburger');
-    equal($.trim(find(".next-action").text()), 'You added the last piece!');
+    equal($.trim(find(".next-action").text()), 'You added the last piece! Undo');
     equal(find('.delete-story').text(), "Delete");
   });
 });
@@ -84,8 +87,24 @@ test("Should allow user who can post a piece to add a piece", function() {
     equal($.trim(find('.last-piece').text()), 'And then it all got crazy');
     equal($.trim(find('.piece-stats h2').text()), '2 / 6 Pieces');
     equal($.trim(find('.progress').text()), '33% Complete');
-    equal($.trim(find(".next-action").text()), 'You added the last piece!');
+    equal($.trim(find(".next-action").text()), 'You added the last piece! Undo');
     equal(/lucille/.test(find('.participants').text()), true);
+  });
+});
+
+test("Show allow the user who posted a piece to undo it", function() {
+  authenticateSession();
+  currentSession().set('content', {user_id: 2});
+  
+  visit('/stories/1');
+  fillIn('.new-piece', "And then it all got crazy");
+  click('button.submit');
+
+  andThen(function() {
+    click('button.undo-new-piece').then(function() {
+      equal($.trim(find('.last-piece').text()), 'This is the start of the second story');
+      equal($.trim(find('.form .new-piece').val()), 'And then it all got crazy');
+    });
   });
 });
 
