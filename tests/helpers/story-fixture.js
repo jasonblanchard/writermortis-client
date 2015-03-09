@@ -11,7 +11,8 @@ export default {
     "users": [
         {
             "id": 1,
-            "email": "jason@example.com"
+            "email": "jason@example.com",
+            "username": "jason"
         }
     ],
     "story": {

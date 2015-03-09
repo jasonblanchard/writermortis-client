@@ -10,7 +10,7 @@
       {{#liquid-with visiblePiece as visiblePiece}}
       <div class='unfinished-story-text'>
         {{redacted-line small=true}}&nbsp
-        <span class='last-piece transition-piece' {{bind-attr data-author=visiblePiece.user.email}}>
+        <span class='last-piece transition-piece' {{bind-attr data-author=visiblePiece.user.id}}>
           {{formatted-text visiblePiece.text}}
         </span>
         {{#unless isEditing}}

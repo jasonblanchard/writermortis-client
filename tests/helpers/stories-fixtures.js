@@ -39,11 +39,13 @@ export default {
     "users": [
         {
             "id": 1,
-            "email": "jason@example.com"
+            "email": "jason@example.com",
+            "username": "jason"
         },
         {
             "id": 2,
-            "email": "lucille@example.com"
+            "email": "lucille@example.com",
+            "username": "lucille"
         }
     ],
     "stories": [

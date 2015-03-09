@@ -39,8 +39,8 @@ test('It shows a finished story', function() {
     equal(/This is the beginning\./.test(find('.finished-story .story').text()), true);
     equal(/And this is the end\./.test(find('.finished-story .story').text()), true);
     equal(find('.piece-stats h2').text(), '2 / 2 Pieces');
-    equal(/lucille@example.com/.test(find('.participants').text()), true);
-    equal(/jason@example.com/.test(find('.participants').text()), true);
+    equal(/lucille/.test(find('.participants').text()), true);
+    equal(/jason/.test(find('.participants').text()), true);
   });
 });
 

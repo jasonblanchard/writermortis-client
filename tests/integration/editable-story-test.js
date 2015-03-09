@@ -85,7 +85,7 @@ test("Should allow user who can post a piece to add a piece", function() {
     equal($.trim(find('.piece-stats h2').text()), '2 / 6 Pieces');
     equal($.trim(find('.progress').text()), '33% Complete');
     equal($.trim(find(".next-action").text()), 'You added the last piece!');
-    equal(/lucille@example.com/.test(find('.participants').text()), true);
+    equal(/lucille/.test(find('.participants').text()), true);
   });
 });
 
