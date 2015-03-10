@@ -21,6 +21,16 @@ export default Ember.Component.extend({
 
   isEditing: false,
 
+  keyDown: function(event) {
+    if (this.get('isDisabled')) {
+      return;
+    }
+
+    if ( (event.ctrlKey || event.metaKey) && (event.keyCode === 13) ) {
+      this.send('createPiece');
+    }
+  },
+
   actions: {
 
     createPiece: function() {
