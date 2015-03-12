@@ -8,13 +8,19 @@ export function initialize(container) {
 
   socket.on("rt-change", function(rawMessage){
     console.log(rawMessage);
-    if (rawMessage.realtime_payload.action === 'create') {
+    // Wait a tick to let Ember data update the store to avoid duplicate records
+    setTimeout(function() {
+      var action = rawMessage.realtime_payload.action;
       var type = rawMessage.realtime_payload.resource;
-      // Wait a tick to let Ember data update the store to avoid duplicate records
-      setTimeout(function() {
-        store.pushPayload(type, rawMessage.realtime_payload.data);
-      }, 1);
-    }
+      var data = rawMessage.realtime_payload.data;
+      if (action === 'create') {
+        store.pushPayload(type, data);
+      } else if (action === 'destroy') {
+        store.find(type, data[type].id).then(function(resource) {
+          resource.unloadRecord();
+        });
+      }
+    }, 100);
   });
 }
 
