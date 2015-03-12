@@ -10,7 +10,10 @@ export function initialize(container) {
     console.log(rawMessage);
     if (rawMessage.realtime_payload.action === 'create') {
       var type = rawMessage.realtime_payload.resource;
-      store.pushPayload(type, rawMessage.realtime_payload.data);
+      // Wait a tick to let Ember data update the store to avoid duplicate records
+      setTimeout(function() {
+        store.pushPayload(type, rawMessage.realtime_payload.data);
+      }, 1);
     }
   });
 }
