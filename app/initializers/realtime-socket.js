@@ -16,9 +16,12 @@ export function initialize(container) {
       if (action === 'create') {
         store.pushPayload(type, data);
       } else if (action === 'destroy') {
-        store.find(type, data[type].id).then(function(resource) {
+        var resources = store.all(type);
+        var resource = resources.filterBy('id', String(data[type].id)).get('firstObject');
+
+        if (resource !== undefined) {
           resource.unloadRecord();
-        });
+        }
       }
     }, 100);
   });
