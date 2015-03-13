@@ -50,7 +50,7 @@ module.exports = function(environment) {
     }
   } else {
     ENV['simple-auth-devise'] = {
-      serverTokenEndpoint: 'http://localhost:3000/users/sign_in'
+      serverTokenEndpoint: 'api/v1/users/sign_in'
     };
   }
 
