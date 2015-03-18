@@ -59,7 +59,8 @@ test("Should show the story to user who posted last piece", function() {
   visit('/stories/2').then(function() {
     equal(/Second Story/.test($.trim(find('.story h2').text())), true);
     equal($.trim(find('.last-piece').text()), 'there was a little cat named hamburger');
-    equal($.trim(find(".next-action").text()), 'You added the last piece! Undo');
+    equal(/You added the last piece!/.test(find(".next-action").text()), true);
+    equal(/Undo/.test(find(".next-action").text()), true);
     equal(find('.delete-story').text(), "Delete");
   });
 });
@@ -87,7 +88,8 @@ test("Should allow user who can post a piece to add a piece", function() {
     equal($.trim(find('.last-piece').text()), 'And then it all got crazy');
     equal($.trim(find('.piece-stats h2').text()), '2 / 6 Pieces');
     equal($.trim(find('.progress').text()), '33% Complete');
-    equal($.trim(find(".next-action").text()), 'You added the last piece! Undo');
+    equal(/You added the last piece!/.test(find(".next-action").text()), true);
+    equal(/Undo/.test(find(".next-action").text()), true);
     equal(/lucille/.test(find('.participants').text()), true);
   });
 });

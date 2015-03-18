@@ -73,6 +73,10 @@ export default Ember.ObjectController.extend({
 
   isEditing: false,
 
+  isFirstPiece: function() {
+    return this.get('story').get('pieces').get('length') === 1;
+  }.property('story', 'story.pieces.@each'),
+
   actions: {
     createPiece: function() {
       var controller = this;

@@ -9,7 +9,9 @@
     <div class='pieces transition-piece'>
       {{#liquid-with visiblePiece as visiblePiece}}
       <div class='unfinished-story-text'>
-        {{redacted-line small=true}}&nbsp
+        {{#unless isFirstPiece}}
+          {{redacted-line small=true}}&nbsp
+        {{/unless}}
         <span class='last-piece transition-piece' {{bind-attr data-author=visiblePiece.user.id}}>
           {{formatted-text visiblePiece.text}}
         </span>
@@ -36,7 +38,10 @@
       <button {{bind-attr disabled='isDisabled'}} {{action 'createPiece'}} class='btn btn-success submit pull-left'>Create Piece</button>
       {{else}}
       <div>
-        <strong>You added the last piece!</strong> <button class='btn btn-default btn-xs undo-new-piece' {{action 'undo'}}>Undo</button>
+      <strong>You added the last piece!</strong>
+        {{#unless isFirstPiece}}
+           <button class='btn btn-default btn-xs undo-new-piece' {{action 'undo'}}>Undo</button>
+        {{/unless}}
       </div>
       {{/if}}
     </div>
