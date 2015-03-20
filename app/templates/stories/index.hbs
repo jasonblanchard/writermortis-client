@@ -2,9 +2,19 @@
   <h2 class='test'><small>ALL TEH STORIES</small></h2>
   {{#link-to 'stories.new' class='btn btn-default btn-sm'}}New{{/link-to}}
 
-  {{#each story in model}}
-    <div>
-      {{#link-to 'story' story}}{{story.title}}{{/link-to}}
-    </div>
-  {{/each}}
+  <article class='center-block col-md-10 centered-column'>
+    {{#each story in model}}
+    {{#link-to 'story' story}}
+      <div class='story-preview'>
+        <header>
+          <h1>
+            {{user-icon email=story.user.email}}
+            {{story.title}}
+          </h1>
+          <span class='truncated'>{{story.pieces.firstObject.text}}</span>
+        </header>
+      </div>
+      {{/link-to}}
+    {{/each}}
+  </article>
 </div>

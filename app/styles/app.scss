@@ -2,11 +2,20 @@
 
 html, body {
   font-family: 'Alegreya', serif;
-  font-size: 16px;
+  font-size: 18px;
 }
 
 h1, h2 {
   font-weight: 900;
+}
+
+a {
+  color: rgb(184, 80, 80);
+}
+
+a:hover {
+  text-decoration: none;
+  color: rgb(144, 18, 18);
 }
 
 .sub {
@@ -42,9 +51,24 @@ h1, h2 {
   font-family: 'Eater', cursive;
 }
 
+.centered-column {
+  margin: 0 auto;
+  float: none;
+}
+
+.truncated {
+  display: inline-block;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  vertical-align: top;
+  white-space: nowrap;
+  max-width: 80%;
+}
+
 @import "story";
 @import "redacted-line";
 @import "rules";
 @import "forms";
 @import "users";
 @import "homepage";
+@import "story-preview";

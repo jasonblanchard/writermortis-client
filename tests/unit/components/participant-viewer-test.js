@@ -7,7 +7,7 @@ import Ember from 'ember';
 
 moduleForComponent('participant-viewer', 'ParticipantViewerComponent', {
   // specify the other units that are required for this test
-  needs: ['component:gravatar-image']
+  needs: ['component:gravatar-image', 'component:user-icon']
 });
 
 var User = Ember.Object.extend();

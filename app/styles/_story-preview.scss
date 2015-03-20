@@ -1,0 +1,16 @@
+.story-preview {
+  background: #f8f8f8;
+  height: 90px;
+  border: 1px solid #F1F1F1;
+  border-radius: 2px;
+  margin-bottom: 10px;
+  padding: 5px;
+
+  h1 {
+    margin-top: 0px;
+  }
+
+  &:hover {
+    background: #D7D7D7;
+  }
+}
