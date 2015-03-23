@@ -3,7 +3,7 @@
   {{#link-to 'stories.new' class='btn btn-default btn-sm'}}New{{/link-to}}
 
   <article class='center-block col-md-10 centered-column'>
-    {{#each story in model}}
+    {{#each story in controller}}
     {{#link-to 'story' story}}
       <div class='story-preview'>
         <header>
