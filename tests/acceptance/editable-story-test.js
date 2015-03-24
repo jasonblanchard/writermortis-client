@@ -106,6 +106,7 @@ test("Show allow the user who posted a piece to undo it", function() {
     click('button.undo-new-piece').then(function() {
       equal($.trim(find('.last-piece').text()), 'This is the start of the second story');
       equal($.trim(find('.form .new-piece').val()), 'And then it all got crazy');
+      equal($.trim(find('.piece-stats h2').text()), '2 / 6 Pieces');
     });
   });
 });
