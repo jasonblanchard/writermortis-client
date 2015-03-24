@@ -20,19 +20,19 @@ export default Ember.ObjectController.extend({
 
   currentNumPieces: function() {
     return this.get('pieces').get('length');
-  }.property('model', 'pieces'),
+  }.property('model', 'pieces', 'model.pieces.@each'),
 
   piecesLeft: function() {
     var maxPieces = this.get('model').get('totalPieces');
     var currentPieces = this.get('currentNumPieces');
     return maxPieces - currentPieces;
-  }.property('model', 'currentNumPieces'),
+  }.property('model', 'currentNumPieces', 'model.pieces.@each'),
 
   percentComplete: function() {
     var pieces = this.get('currentNumPieces');
     var totalPossible = this.get('model').get('totalPieces');
     return Math.round((pieces / totalPossible) * 100);
-  }.property('piecesLeft', 'currentNumPieces'),
+  }.property('piecesLeft', 'currentNumPieces', 'model.pieces.@each'),
 
   progressBarStyle: function() {
     return "width: " + this.get('percentComplete') + "%;";
