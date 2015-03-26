@@ -6,6 +6,13 @@ export default {
             "created_at": "2014-10-22T00:33:35.283Z",
             "updated_at": "2014-10-22T00:33:35.283Z",
             "user_id": 1
+        },
+        {
+            "id": 2,
+            "text": " there was a little cat named hamburger",
+            "created_at": "2014-10-22T00:33:35.283Z",
+            "updated_at": "2014-10-22T00:33:35.283Z",
+            "user_id": 2
         }
     ],
     "users": [
@@ -13,11 +20,16 @@ export default {
             "id": 1,
             "email": "jason@example.com",
             "username": "jason"
+        },
+        {
+            "id": 2,
+            "email": "lucille@example.com",
+            "username": "lucille"
         }
     ],
     "story": {
       "id": 2,
-      "title": "Great New Story",
+      "title": "Second Story",
       "total_pieces": 6,
       "max_sentences": 3,
       "piece_ids": [

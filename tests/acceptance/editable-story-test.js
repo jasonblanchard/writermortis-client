@@ -4,6 +4,7 @@ import Pretender from 'pretender';
 import storiesFixtures from 'writermortis/tests/helpers/stories-fixtures';
 import userFixtures from 'writermortis/tests/helpers/user-fixtures';
 import pieceFixture from 'writermortis/tests/helpers/piece-fixture';
+import storyFixture from 'writermortis/tests/helpers/story-fixture';
 import mockResponse from 'writermortis/tests/helpers/mock-response';
 
 var App;
@@ -34,6 +35,9 @@ module('Integration - editable story', {
       this.delete("/api/v1/pieces/138", function(request) {
         return [204, { 'Content-Type': 'application/json' }, JSON.stringify({})];
       });
+      this.get("/api/v1/stories/2", function(request) {
+        return mockResponse.ok(storyFixture);
+      });
     });
   },
   teardown: function() {
@@ -44,34 +48,35 @@ module('Integration - editable story', {
 
 test("Should show the story to an anon user", function() {
   invalidateSession();
-  visit('/stories/2').then(function() {
-    equal($.trim(find('.story h2').text()), "Second Story");
-    equal($.trim(find('.last-piece').text()), 'there was a little cat named hamburger');
-    equal($.trim(find(".next-action").text()), 'Sign in the add to this story!');
-    equal($.trim(find('.piece-stats h2').text()), '2 / 6 Pieces');
+  visit('/').then(function() {
+    visit('/stories/2').then(function() {
+      equal($.trim(find('.story h2').text()), "Second Story");
+      equal($.trim(find('.last-piece').text()), 'there was a little cat named hamburger');
+      equal($.trim(find(".next-action").text()), 'Sign in the add to this story!');
+      equal($.trim(find('.piece-stats h2').text()), '2 / 6 Pieces');
+    });
   });
 });
 
 test("Should show the story to user who posted last piece", function() {
   authenticateSession();
-  currentSession().set('currentUser', Ember.Object.create({id: "1"}));
+  currentSession().set('currentUser', Ember.Object.create({id: "2"}));
 
   visit('/stories/2').then(function() {
     equal(/Second Story/.test($.trim(find('.story h2').text())), true);
     equal($.trim(find('.last-piece').text()), 'there was a little cat named hamburger');
     equal(/You added the last piece!/.test(find(".next-action").text()), true);
     equal(/Undo/.test(find(".next-action").text()), true);
-    equal(find('.delete-story').text(), "Delete");
   });
 });
 
 test("Should show the story to a user who can post a piece", function() {
   authenticateSession();
-  currentSession().set('content', {user_id: 2});
+  currentSession().set('content', {user_id: 1});
 
-  visit('/stories/1').then(function() {
-    equal($.trim(find('.story h2').text()), "My first story");
-    equal($.trim(find('.last-piece').text()), 'This is the start of the second story');
+  visit('/stories/2').then(function() {
+    equal(/Second Story/.test($.trim(find('.story h2').text())), true);
+    equal($.trim(find('.last-piece').text()), 'there was a little cat named hamburger');
     equal($.trim(find(".next-action button").text()), 'Create Piece');
   });
 });

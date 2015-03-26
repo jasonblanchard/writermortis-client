@@ -54,7 +54,7 @@ test("Should allow a logged in user to create a story", function() {
   click("[type='submit']");
 
   andThen(function() {
-    equal(/Great New Story/.test(find('.story h2').text()), true);
+    equal(/Second Story/.test(find('.story h2').text()), true);
   });
 });
 
