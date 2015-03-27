@@ -1,16 +1,16 @@
 import Ember from 'ember';
 import startApp from 'writermortis/tests/helpers/start-app';
 import Pretender from 'pretender';
-import storiesFixtures from 'writermortis/tests/helpers/stories-fixtures';
-import userFixtures from 'writermortis/tests/helpers/user-fixtures';
-import storyFixture from 'writermortis/tests/helpers/story-fixture';
-import pieceFixture from 'writermortis/tests/helpers/piece-fixture';
+import storiesFixtures from 'writermortis/tests/fixtures/stories-fixtures';
+import userFixtures from 'writermortis/tests/fixtures/user-fixtures';
+import storyFixture from 'writermortis/tests/fixtures/story-fixture';
+import pieceFixture from 'writermortis/tests/fixtures/piece-fixture';
 import mockResponse from 'writermortis/tests/helpers/mock-response';
 
 var App;
 var server;
 
-module('Integration - create a story', {
+module('Acceptance - create a story', {
   setup: function() {
     App = startApp();
 
