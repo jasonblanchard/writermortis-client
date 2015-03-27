@@ -29,7 +29,7 @@ module('Integration - editable story', {
       this.post("/api/v1/pieces/", function(request) {
         return mockResponse.ok(pieceFixture);
       });
-      this.delete("/api/v1/stories/1", function(request) {
+      this.delete("/api/v1/stories/2", function(request) {
         return [204, { 'Content-Type': 'application/json' }, JSON.stringify({})];
       });
       this.delete("/api/v1/pieces/138", function(request) {
@@ -83,16 +83,16 @@ test("Should show the story to a user who can post a piece", function() {
 
 test("Should allow user who can post a piece to add a piece", function() {
   authenticateSession();
-  currentSession().set('content', {user_id: 2});
+  currentSession().set('content', {user_id: 1});
   
-  visit('/stories/1');
+  visit('/stories/2');
   fillIn('.new-piece', "And then it all got crazy");
   click('button.submit');
 
   andThen(function() {
     equal($.trim(find('.last-piece').text()), 'And then it all got crazy');
-    equal($.trim(find('.piece-stats h2').text()), '2 / 6 Pieces');
-    equal($.trim(find('.progress').text()), '33% Complete');
+    equal($.trim(find('.piece-stats h2').text()), '3 / 6 Pieces');
+    equal($.trim(find('.progress').text()), '50% Complete');
     equal(/You added the last piece!/.test(find(".next-action").text()), true);
     equal(/Undo/.test(find(".next-action").text()), true);
     equal(/lucille/.test(find('.participants').text()), true);
@@ -101,15 +101,15 @@ test("Should allow user who can post a piece to add a piece", function() {
 
 test("Show allow the user who posted a piece to undo it", function() {
   authenticateSession();
-  currentSession().set('content', {user_id: 2});
+  currentSession().set('content', {user_id: 1});
   
-  visit('/stories/1');
+  visit('/stories/2');
   fillIn('.new-piece', "And then it all got crazy");
   click('button.submit');
 
   andThen(function() {
     click('button.undo-new-piece').then(function() {
-      equal($.trim(find('.last-piece').text()), 'This is the start of the second story');
+      equal($.trim(find('.last-piece').text()), 'there was a little cat named hamburger');
       equal($.trim(find('.form .new-piece').val()), 'And then it all got crazy');
       equal($.trim(find('.piece-stats h2').text()), '2 / 6 Pieces');
     });
@@ -120,7 +120,7 @@ test("Owner can destroy story", function() {
   authenticateSession();
   currentSession().set('content', {user_id: 1});
 
-  visit('/stories/1');
+  visit('/stories/2');
   click('.delete-story');
 
   andThen(function() {
