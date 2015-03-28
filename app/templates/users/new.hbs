@@ -1,0 +1,16 @@
+<h2>Register</h2>
+
+<form {{action 'createUser' on='submit'}}>
+  <label for='username'>Username</label>
+  {{input id='username' type='text' value=newUser.username}}
+  <label for='email'>Email</label>
+  {{input id='email' type='text' value=newUser.email}}
+  <label for='password'>Password</label>
+  {{input id='password' type='password' value=newUser.password}}
+  <label for='password-confirmation'>Password Confirmation</label>
+  {{#each error in newUser.errors.passwordConfirmation}}
+    {{error.message}}
+  {{/each}}
+  {{input id='password-confirmation' type='password' value=newUser.passwordConfirmation}}
+  <button type='submit' class='btn btn-default'>Register</button>
+</form>

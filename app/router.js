@@ -12,6 +12,9 @@ Router.map(function() {
     this.route('new', {path: '/new'});
   });
   this.resource('stories', function() { });
+  this.resource('users', function() {
+    this.route('new', {path: '/register'});
+  });
 });
 
 export default Router;
