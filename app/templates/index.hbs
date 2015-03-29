@@ -1,9 +1,11 @@
-<div class='homepage'>
-  {{#link-to 'login'}}login{{/link-to}} |
-  {{#link-to 'stories'}}stories{{/link-to}}
-  {{#link-to 'users.new' class='btn btn-default'}}Write something weird{{/link-to}}
+<div class='headline'>
+  <div class='pull-right'>
+    {{#link-to 'stories'}}stories{{/link-to}} |
+    {{#link-to 'login'}}login{{/link-to}}
+  </div>
   <h1 class='brand'>Writermortis</h1>
+  {{#link-to 'users.new' class='btn btn-default call-to-action'}}<span class="glyphicon glyphicon-pencil"></span> Write something weird{{/link-to}}
 </div>
 <div class='info'>
-  more stuff down here
+  More info down here
 </div>
