@@ -4,7 +4,6 @@ import ApplicationRouteMixin from 'simple-auth/mixins/application-route-mixin';
 export default Ember.Route.extend(ApplicationRouteMixin, {
 
   beforeModel: function(transition) {
-    console.log(transition.targetName);
     if ((transition.targetName === 'index') && (this.get('session').get('isAuthenticated'))) {
       this.transitionTo('stories');
     }
