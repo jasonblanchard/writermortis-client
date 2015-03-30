@@ -13,7 +13,6 @@ export default Ember.Controller.extend(AuthenticationControllerMixin, {
       this.get('newUser').save().then(function() {
         var user = controller.get('newUser');
         controller.get('session').authenticate('simple-auth-authenticator:devise', {identification: user.get('email'), password: user.get('password')}).then(function() {
-          console.log(controller.get("session"));
           controller.transitionToRoute('stories');
         });
       }, 

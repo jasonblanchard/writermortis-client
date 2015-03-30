@@ -50,7 +50,6 @@ export default Ember.Controller.extend(EmberValidations.Mixin, {
           });
         });
       } else {
-        console.log(this.get('errors'));
         controller.set('showErrors', true);
       }
 

@@ -1,13 +1,11 @@
 import ENV from 'writermortis/config/environment';
 
 export function initialize(container) {
-  console.log("setting up socket connection");
 
   var store = container.lookup('store:main');
   var socket = io.connect(ENV.writermortisRealtimeHost);
 
   socket.on("rt-change", function(rawMessage){
-    console.log(rawMessage);
     // Wait a tick to let Ember data update the store to avoid duplicate records
     setTimeout(function() {
       var action = rawMessage.realtime_payload.action;
