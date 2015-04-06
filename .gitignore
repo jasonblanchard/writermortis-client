@@ -19,3 +19,4 @@ testem.log
 .DS_Store
 
 s3.json
+deploy.js
