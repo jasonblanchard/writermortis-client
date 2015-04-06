@@ -3,10 +3,13 @@
 var EmberApp = require('ember-cli/lib/broccoli/ember-app');
 
 var app = new EmberApp({
-   'ember-cli-bootstrap-sass': {
-      'importBootstrapJS': true,
-      'components': false
-   }
+  'ember-cli-bootstrap-sass': {
+    'importBootstrapJS': true,
+    'components': false,
+    'fingerprint': {
+      prepend: 'https://s3.amazonaws.com/writermortis-production'
+    }
+  }
 });
 
 app.import('bower_components/socket.io-client/socket.io.js');
