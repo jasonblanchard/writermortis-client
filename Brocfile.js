@@ -6,9 +6,9 @@ var app = new EmberApp({
   'ember-cli-bootstrap-sass': {
     'importBootstrapJS': true,
     'components': false,
-    'fingerprint': {
-      prepend: 'https://s3.amazonaws.com/writermortis-production'
-    }
+  },
+  'fingerprint': {
+    prepend: 'https://s3.amazonaws.com/writermortis-production'
   }
 });
 
