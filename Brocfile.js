@@ -8,7 +8,7 @@ var app = new EmberApp({
     'components': false,
   },
   'fingerprint': {
-    prepend: 'https://s3.amazonaws.com/writermortis-production'
+    prepend: 'https://s3.amazonaws.com/writermortis-production/'
   }
 });
 
