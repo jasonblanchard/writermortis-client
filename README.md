@@ -1,7 +1,6 @@
 # Writermortis
 
-This README outlines the details of collaborating on this Ember application.
-A short introduction of this app could easily go here.
+A super weird writing game.
 
 ## Prerequisites
 
@@ -41,7 +40,19 @@ Make use of the many generators for code, try `ember help generate` for more det
 
 ### Deploying
 
-Specify what it takes to deploy your app.
+Using https://github.com/ember-cli/ember-cli-deploy.
+
+#### Prereqs
+- make sure you have AWS credentials stored on `config/s3.json`. 
+- update `config/deploy.js` with the redis info. Right now, this is using a redistogo instance set up with the `writermortis-realtime` heroku app (TODO: Give this its own redis instance!).
+- set up an S3 bucket to hold the assets
+- configure asset fingerprint prepend in `Brocfile.js`
+- configure `writermortis-server` to pull `index.html` form the `writermortis:current` key in redis. This will server all the assets from the S3 bucket (via the fingerprint prepend) on the same host as `writermortis-server`
+
+#### To deploy
+- `ember deploy --environment production` - Compiles in `dist` and uploads to S3
+- `ember deploy:list --environment production` - Lists revisions that are in redis and shows which one is active
+- `ember deploy:activate --revision ember-deploy:44f2f92 --environment production` - change revision to the one you want to deploy. This will tell the app to serve the `index.html` content from redis based on a specific revision, usually the most recent one.
 
 ## Further Reading / Useful Links
 
