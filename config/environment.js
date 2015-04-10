@@ -19,7 +19,6 @@ module.exports = function(environment) {
     }
   };
 
-  ENV.writermortisRealtimeHost = 'http://localhost:5001'
 
   if (environment === 'development') {
     // ENV.APP.LOG_RESOLVER = true;
@@ -27,6 +26,7 @@ module.exports = function(environment) {
     // ENV.APP.LOG_TRANSITIONS = true;
     // ENV.APP.LOG_TRANSITIONS_INTERNAL = true;
     // ENV.APP.LOG_VIEW_LOOKUPS = true;
+    ENV.writermortisRealtimeHost = 'http://localhost:5001'
   }
 
   if (environment === 'test') {
@@ -42,7 +42,7 @@ module.exports = function(environment) {
   }
 
   if (environment === 'production') {
-
+    ENV.writermortisRealtimeHost = 'https://writermortis-realtime.herokuapp.com'
   }
 
   if (environment === 'test') {
