@@ -8,29 +8,29 @@ moduleForComponent('sentence-counter', 'SentenceCounterComponent', {
   // needs: ['component:foo', 'helper:bar']
 });
 
-test('it renders', function() {
-  expect(2);
+test('it renders', function(assert) {
+  assert.expect(2);
 
   // creates the component instance
   var component = this.subject();
-  equal(component._state, 'preRender');
+  assert.equal(component._state, 'preRender');
 
   // appends the component to the page
   this.append();
-  equal(component._state, 'inDOM');
+  assert.equal(component._state, 'inDOM');
 });
 
-test('it applies a warning class when it is under', function() {
+test('it applies a warning class when it is under', function(assert) {
   var component = this.subject({currentPieceSentenceCount: 3, maxSentences: 4});
-  equal(component.get('warningClass'), 'under');
+  assert.equal(component.get('warningClass'), 'under');
 });
 
-test('it applies a warning class when it has none', function() {
+test('it applies a warning class when it has none', function(assert) {
   var component = this.subject({currentPieceSentenceCount: 0, maxSentences: 4});
-  equal(component.get('warningClass'), 'none');
+  assert.equal(component.get('warningClass'), 'none');
 });
 
-test('it applies a warning class when it is over', function() {
+test('it applies a warning class when it is over', function(assert) {
   var component = this.subject({currentPieceSentenceCount: 6, maxSentences: 4});
-  equal(component.get('warningClass'), 'over');
+  assert.equal(component.get('warningClass'), 'over');
 });

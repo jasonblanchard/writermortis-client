@@ -1,4 +1,5 @@
 import Ember from 'ember';
+import {module, test} from 'qunit';
 import startApp from 'writermortis/tests/helpers/start-app';
 import Pretender from 'pretender';
 import storiesFixtures from 'writermortis/tests/fixtures/stories-fixtures';
@@ -11,7 +12,7 @@ var App;
 var server;
 
 module('Acceptance - editable story', {
-  setup: function() {
+  beforeEach: function() {
     App = startApp();
 
     server = new Pretender(function() {
@@ -40,48 +41,48 @@ module('Acceptance - editable story', {
       });
     });
   },
-  teardown: function() {
+  afterEach: function() {
     Ember.run(App, 'destroy');
     server.shutdown();
   }
 });
 
-test("Should show the story to an anon user", function() {
+test("Should show the story to an anon user", function(assert) {
   invalidateSession();
   visit('/').then(function() {
     visit('/stories/2').then(function() {
-      equal($.trim(find('.story h2').text()), "Second Story");
-      equal($.trim(find('.last-piece').text()), 'there was a little cat named hamburger');
-      equal($.trim(find(".next-action").text()), 'Sign in the add to this story!');
-      equal($.trim(find('.piece-stats h2').text()), '2 / 6 Pieces');
+      assert.equal($.trim(find('.story h2').text()), "Second Story");
+      assert.equal($.trim(find('.last-piece').text()), 'there was a little cat named hamburger');
+      assert.equal($.trim(find(".next-action").text()), 'Sign in the add to this story!');
+      assert.equal($.trim(find('.piece-stats h2').text()), '2 / 6 Pieces');
     });
   });
 });
 
-test("Should show the story to user who posted last piece", function() {
+test("Should show the story to user who posted last piece", function(assert) {
   authenticateSession();
   currentSession().set('currentUser', Ember.Object.create({id: "2"}));
 
   visit('/stories/2').then(function() {
-    equal(/Second Story/.test($.trim(find('.story h2').text())), true);
-    equal($.trim(find('.last-piece').text()), 'there was a little cat named hamburger');
-    equal(/You added the last piece!/.test(find(".next-action").text()), true);
-    equal(/Undo/.test(find(".next-action").text()), true);
+    assert.equal(/Second Story/.test($.trim(find('.story h2').text())), true);
+    assert.equal($.trim(find('.last-piece').text()), 'there was a little cat named hamburger');
+    assert.equal(/You added the last piece!/.test(find(".next-action").text()), true);
+    assert.equal(/Undo/.test(find(".next-action").text()), true);
   });
 });
 
-test("Should show the story to a user who can post a piece", function() {
+test("Should show the story to a user who can post a piece", function(assert) {
   authenticateSession();
   currentSession().set('content', {user_id: 1});
 
   visit('/stories/2').then(function() {
-    equal(/Second Story/.test($.trim(find('.story h2').text())), true);
-    equal($.trim(find('.last-piece').text()), 'there was a little cat named hamburger');
-    equal($.trim(find(".next-action button").text()), 'Create Piece');
+    assert.equal(/Second Story/.test($.trim(find('.story h2').text())), true);
+    assert.equal($.trim(find('.last-piece').text()), 'there was a little cat named hamburger');
+    assert.equal($.trim(find(".next-action button").text()), 'Create Piece');
   });
 });
 
-test("Should allow user who can post a piece to add a piece", function() {
+test("Should allow user who can post a piece to add a piece", function(assert) {
   authenticateSession();
   currentSession().set('content', {user_id: 1});
   
@@ -90,16 +91,16 @@ test("Should allow user who can post a piece to add a piece", function() {
   click('button.submit');
 
   andThen(function() {
-    equal($.trim(find('.last-piece').text()), 'And then it all got crazy');
-    equal($.trim(find('.piece-stats h2').text()), '3 / 6 Pieces');
-    equal($.trim(find('.progress').text()), '50% Complete');
-    equal(/You added the last piece!/.test(find(".next-action").text()), true);
-    equal(/Undo/.test(find(".next-action").text()), true);
-    equal(/lucille/.test(find('.participants').text()), true);
+    assert.equal($.trim(find('.last-piece').text()), 'And then it all got crazy');
+    assert.equal($.trim(find('.piece-stats h2').text()), '3 / 6 Pieces');
+    assert.equal($.trim(find('.progress').text()), '50% Complete');
+    assert.equal(/You added the last piece!/.test(find(".next-action").text()), true);
+    assert.equal(/Undo/.test(find(".next-action").text()), true);
+    assert.equal(/lucille/.test(find('.participants').text()), true);
   });
 });
 
-test("Show allow the user who posted a piece to undo it", function() {
+test("Show allow the user who posted a piece to undo it", function(assert) {
   authenticateSession();
   currentSession().set('content', {user_id: 1});
   
@@ -109,14 +110,14 @@ test("Show allow the user who posted a piece to undo it", function() {
 
   andThen(function() {
     click('button.undo-new-piece').then(function() {
-      equal($.trim(find('.last-piece').text()), 'there was a little cat named hamburger');
-      equal($.trim(find('.form .new-piece').val()), 'And then it all got crazy');
-      equal($.trim(find('.piece-stats h2').text()), '2 / 6 Pieces');
+      assert.equal($.trim(find('.last-piece').text()), 'there was a little cat named hamburger');
+      assert.equal($.trim(find('.form .new-piece').val()), 'And then it all got crazy');
+      assert.equal($.trim(find('.piece-stats h2').text()), '2 / 6 Pieces');
     });
   });
 });
 
-test("Owner can destroy story", function() {
+test("Owner can destroy story", function(assert) {
   authenticateSession();
   currentSession().set('content', {user_id: 1});
 
@@ -124,7 +125,7 @@ test("Owner can destroy story", function() {
   click('.delete-story');
 
   andThen(function() {
-     equal(currentRouteName(), 'stories.index');
-     equal(/My first story/.test(find('body').text()), false);
+     assert.equal(currentRouteName(), 'stories.index');
+     assert.equal(/My first story/.test(find('body').text()), false);
   });
 });

@@ -4,7 +4,7 @@
       <label for='title'>Title</label>
       {{#if showErrors}}
         {{#each error in errors.model.title}}
-          <span class='errors'>{{error}}<rspan>
+          <span class='errors'>{{error}}</span>
         {{/each}}
       {{/if}}
       {{input id='title' type='text' value=newStory.title class='form-control' name='title'}}

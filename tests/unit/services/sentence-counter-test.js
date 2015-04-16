@@ -8,8 +8,8 @@ moduleFor('service:sentence-counter', 'SentenceCounterService', {
   // needs: ['service:foo']
 });
 
-test('it returns a sentence count', function() {
+test('it returns a sentence count', function(assert) {
   var service = this.subject();
   var text = "This. Has! Three sentences.";
-  equal(service.count(text), 3);
+  assert.equal(service.count(text), 3);
 });

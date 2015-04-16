@@ -1,4 +1,5 @@
 import Ember from 'ember';
+import {module, test} from 'qunit';
 import startApp from 'writermortis/tests/helpers/start-app';
 import Pretender from 'pretender';
 import storiesFixtures from 'writermortis/tests/fixtures/stories-fixtures';
@@ -11,7 +12,7 @@ var App;
 var server;
 
 module('Acceptance - editable story', {
-  setup: function() {
+  beforeEach: function() {
     App = startApp();
 
     server = new Pretender(function() {
@@ -32,24 +33,24 @@ module('Acceptance - editable story', {
       });
     });
   },
-  teardown: function() {
+  afterEach: function() {
     Ember.run(App, 'destroy');
     server.shutdown();
   }
 });
 
-test('It shows a finished story', function() {
+test('It shows a finished story', function(assert) {
   visit('/stories/3').then(function() {
-    equal($.trim(find('.finished-story h2').text()), "A Short Story");
-    equal(/This is the beginning\./.test(find('.finished-story .story').text()), true);
-    equal(/And this is the end\./.test(find('.finished-story .story').text()), true);
-    equal(find('.piece-stats h2').text(), '2 / 2 Pieces');
-    equal(/lucille/.test(find('.participants').text()), true);
-    equal(/jason/.test(find('.participants').text()), true);
+    assert.equal($.trim(find('.finished-story h2').text()), "A Short Story");
+    assert.equal(/This is the beginning\./.test(find('.finished-story .story').text()), true);
+    assert.equal(/And this is the end\./.test(find('.finished-story .story').text()), true);
+    assert.equal(find('.piece-stats h2').text(), '2 / 2 Pieces');
+    assert.equal(/lucille/.test(find('.participants').text()), true);
+    assert.equal(/jason/.test(find('.participants').text()), true);
   });
 });
 
-test("The owner can delete it", function() {
+test("The owner can delete it", function(assert) {
   authenticateSession();
   currentSession().set('content', {user_id: 1});
 
@@ -57,7 +58,7 @@ test("The owner can delete it", function() {
   click('.delete-story');
 
   andThen(function() {
-     equal(currentRouteName(), 'stories.index');
-     equal(/My first story/.test(find('body').text()), false);
+     assert.equal(currentRouteName(), 'stories.index');
+     assert.equal(/My first story/.test(find('body').text()), false);
   });
 });

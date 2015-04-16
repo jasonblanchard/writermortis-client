@@ -5,7 +5,7 @@ var Router = Ember.Router.extend({
   location: config.locationType
 });
 
-Router.map(function() {
+export default Router.map(function() {
   this.route('login');
   this.resource('stories', { path: 'stories' }, function() { 
     this.resource('story', { path: '/:story_id' });
@@ -16,5 +16,3 @@ Router.map(function() {
     this.route('new', {path: '/register'});
   });
 });
-
-export default Router;

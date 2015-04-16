@@ -5,5 +5,11 @@ export default Ember.Controller.extend({
 
   showNavbar: function() {
     return this.get('currentRouteName') !== 'index';
-  }.property('currentRouteName')
+  }.property('currentRouteName'),
+
+  actions: {
+    invalidateSession: function() {
+      this.get('session').invalidate();
+    }
+  }
 });

@@ -1,4 +1,5 @@
 import Ember from 'ember';
+import {module, test} from 'qunit';
 import startApp from 'writermortis/tests/helpers/start-app';
 import Pretender from 'pretender';
 import storiesFixtures from 'writermortis/tests/fixtures/stories-fixtures';
@@ -11,7 +12,7 @@ var App;
 var server;
 
 module('Acceptance - create a story', {
-  setup: function() {
+  beforeEach: function() {
     App = startApp();
 
     server = new Pretender(function() {
@@ -36,13 +37,13 @@ module('Acceptance - create a story', {
       });
     });
   },
-  teardown: function() {
+  afterEach: function() {
     Ember.run(App, 'destroy');
     server.shutdown();
   }
 });
 
-test("Should allow a logged in user to create a story", function() {
+test("Should allow a logged in user to create a story", function(assert) {
   authenticateSession();
   currentSession().set('currentUser', Ember.Object.create({id: "1"}));
 
@@ -54,11 +55,11 @@ test("Should allow a logged in user to create a story", function() {
   click("[type='submit']");
 
   andThen(function() {
-    equal(/Second Story/.test(find('.story h2').text()), true);
+    assert.equal(/Second Story/.test(find('.story h2').text()), true);
   });
 });
 
-test("It runs validations", function() {
+test("It runs validations", function(assert) {
   authenticateSession();
   currentSession().set('currentUser', Ember.Object.create({id: "1"}));
 
@@ -66,15 +67,15 @@ test("It runs validations", function() {
   click("[type='submit']");
 
   andThen(function() {
-    equal($.trim(find('.form-group.title .errors').text()), "can't be blank");
-    equal($.trim(find('.form-group.first-piece .errors').text()), "can't be blank");
+    assert.equal($.trim(find('.form-group.title .errors').text()), "can't be blank");
+    assert.equal($.trim(find('.form-group.first-piece .errors').text()), "can't be blank");
   });
 });
 
-test("Should redirect to login for anon users", function() {
+test("Should redirect to login for anon users", function(assert) {
   invalidateSession();
 
   visit('/stories/new').then(function() {
-    equal(find('label[for="identification"]').text(), 'Login');
+    assert.equal(find('label[for="identification"]').text(), 'Login');
   });
 });

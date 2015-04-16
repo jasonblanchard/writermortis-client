@@ -1,4 +1,5 @@
 import Ember from 'ember';
+import {module, test} from 'qunit';
 import startApp from '../helpers/start-app';
 import Pretender from 'pretender';
 import mockResponse from 'writermortis/tests/helpers/mock-response';
@@ -8,7 +9,7 @@ import storiesFixtures from 'writermortis/tests/fixtures/stories-fixtures';
 var application;
 
 module('Acceptance: Registrations', {
-  setup: function() {
+  beforeEach: function() {
     application = startApp();
 
     var server = new Pretender(function() {
@@ -34,12 +35,12 @@ module('Acceptance: Registrations', {
       });
     });
   },
-  teardown: function() {
+  afterEach: function() {
     Ember.run(application, 'destroy');
   }
 });
 
-test('Shows errors when failed validation', function() {
+test('Shows errors when failed validation', function(assert) {
   visit('/users/register');
   fillIn('#username', 'test');
   fillIn('#email', 'test@example.com');
@@ -48,11 +49,11 @@ test('Shows errors when failed validation', function() {
   click("[type='submit']");
 
   andThen(function() {
-    equal(find(".errors.password-confirmation").text(), "doesn't match Password");
+    assert.equal(find(".errors.password-confirmation").text(), "doesn't match Password");
   });
 });
 
-test('Redirects and logs in on success', function() {
+test('Redirects and logs in on success', function(assert) {
   visit('/users/register');
   fillIn('#username', 'jason');
   fillIn('#email', 'jason@example.com');
@@ -61,9 +62,9 @@ test('Redirects and logs in on success', function() {
   click("[type='submit']");
 
   andThen(function() {
-    equal(currentRouteName(), 'stories.index');
+    assert.equal(currentRouteName(), 'stories.index');
     andThen(function() {
-      equal(find('.current-user-menu').text(), userFixtures.jason.user.email);
+      assert.equal(find('.current-user-menu').text(), userFixtures.jason.user.email);
     });
   });
 });
