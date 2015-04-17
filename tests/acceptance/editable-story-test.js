@@ -72,8 +72,9 @@ test("Should show the story to user who posted last piece", function(assert) {
 });
 
 test("Should show the story to a user who can post a piece", function(assert) {
+  invalidateSession();
   authenticateSession();
-  currentSession().set('content', {user_id: 1});
+  currentSession().set('content', {user_id: 2});
 
   visit('/stories/2').then(function() {
     assert.equal(/Second Story/.test($.trim(find('.story h2').text())), true);
