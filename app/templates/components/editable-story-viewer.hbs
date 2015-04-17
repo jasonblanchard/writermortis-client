@@ -12,7 +12,7 @@
         {{#unless isFirstPiece}}
           {{redacted-line small=true}}&nbsp
         {{/unless}}
-        <span class='last-piece transition-piece' {{bind-attr data-author=visiblePiece.user.id}}>
+        <span class='last-piece transition-piece' data-author={{visiblePiece.user.id}}>
           {{formatted-text visiblePiece.text}}
         </span>
         {{#unless isEditing}}
@@ -35,7 +35,7 @@
       <div class='pull-right'>
         {{sentence-counter maxSentences=story.maxSentences currentPieceSentenceCount=currentPieceSentenceCount}}
       </div>
-      <button {{bind-attr disabled='isDisabled'}} {{action 'createPiece'}} class='btn btn-success submit pull-left'>Create Piece</button>
+      <button disabled={{isDisabled}} {{action 'createPiece'}} class='btn btn-success submit pull-left'>Create Piece</button>
       {{else}}
       <div>
       <strong>You added the last piece!</strong>
