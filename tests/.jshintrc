@@ -1,5 +1,7 @@
 {
   "predef": [
+    "authenticateSession",
+    "invalidateSession",
     "document",
     "window",
     "location",
@@ -22,9 +24,7 @@
     "currentURL",
     "currentPath",
     "currentRouteName",
-    "authenticateSession",
     "currentSession",
-    "invalidateSession"
   ],
   "node": false,
   "browser": false,
