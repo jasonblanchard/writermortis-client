@@ -24,7 +24,7 @@
     "currentURL",
     "currentPath",
     "currentRouteName",
-    "currentSession",
+    "currentSession"
   ],
   "node": false,
   "browser": false,
