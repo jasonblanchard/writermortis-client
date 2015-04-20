@@ -54,6 +54,7 @@ test('Shows errors when failed validation', function(assert) {
 });
 
 test('Redirects and logs in on success', function(assert) {
+  invalidateSession();
   visit('/users/register');
   fillIn('#username', 'jason');
   fillIn('#email', 'jason@example.com');

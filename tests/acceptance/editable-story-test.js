@@ -84,49 +84,62 @@ test("Should show the story to a user who can post a piece", function(assert) {
 });
 
 test("Should allow user who can post a piece to add a piece", function(assert) {
-  authenticateSession();
-  currentSession().set('content', {user_id: 1});
-  
-  visit('/stories/2');
-  fillIn('.new-piece', "And then it all got crazy");
-  click('button.submit');
+  Ember.run(function() {
+    var user = App.__container__.lookup('store:main').createRecord('user');
+    user.set('id', 1);
+    authenticateSession();
+    currentSession().set('currentUser', user);
+    
+    visit('/stories/2');
+    fillIn('.new-piece', "And then it all got crazy");
+    click('button.submit');
 
-  andThen(function() {
-    assert.equal($.trim(find('.last-piece').text()), 'And then it all got crazy');
-    assert.equal($.trim(find('.piece-stats h2').text()), '3 / 6 Pieces');
-    assert.equal($.trim(find('.progress').text()), '50% Complete');
-    assert.equal(/You added the last piece!/.test(find(".next-action").text()), true);
-    assert.equal(/Undo/.test(find(".next-action").text()), true);
-    assert.equal(/lucille/.test(find('.participants').text()), true);
+    andThen(function() {
+      assert.equal($.trim(find('.last-piece').text()), 'And then it all got crazy');
+      assert.equal($.trim(find('.piece-stats h2').text()), '3 / 6 Pieces');
+      assert.equal($.trim(find('.progress').text()), '50% Complete');
+      assert.equal(/You added the last piece!/.test(find(".next-action").text()), true);
+      assert.equal(/Undo/.test(find(".next-action").text()), true);
+      assert.equal(/lucille/.test(find('.participants').text()), true);
+    });
   });
 });
 
 test("Show allow the user who posted a piece to undo it", function(assert) {
-  authenticateSession();
-  currentSession().set('content', {user_id: 1});
-  
-  visit('/stories/2');
-  fillIn('.new-piece', "And then it all got crazy");
-  click('button.submit');
+  Ember.run(function() {
+    var user = App.__container__.lookup('store:main').createRecord('user');
+    user.set('id', 1);
+    authenticateSession();
+    currentSession().set('currentUser', user);
 
-  andThen(function() {
-    click('button.undo-new-piece').then(function() {
-      assert.equal($.trim(find('.last-piece').text()), 'there was a little cat named hamburger');
-      assert.equal($.trim(find('.form .new-piece').val()), 'And then it all got crazy');
-      assert.equal($.trim(find('.piece-stats h2').text()), '2 / 6 Pieces');
+    visit('/stories/2');
+    fillIn('.new-piece', "And then it all got crazy");
+    click('button.submit');
+
+    andThen(function() {
+      click('button.undo-new-piece').then(function() {
+        assert.equal($.trim(find('.last-piece').text()), 'there was a little cat named hamburger');
+        assert.equal($.trim(find('.form .new-piece').val()), 'And then it all got crazy');
+        assert.equal($.trim(find('.piece-stats h2').text()), '2 / 6 Pieces');
+      });
     });
   });
 });
 
 test("Owner can destroy story", function(assert) {
-  authenticateSession();
-  currentSession().set('content', {user_id: 1});
 
-  visit('/stories/2');
-  click('.delete-story');
+  Ember.run(function() {
+    var user = App.__container__.lookup('store:main').createRecord('user');
+    user.set('id', 1);
+    authenticateSession();
+    currentSession().set('currentUser', user);
 
-  andThen(function() {
-     assert.equal(currentRouteName(), 'stories.index');
-     assert.equal(/My first story/.test(find('body').text()), false);
+    visit('/stories/2');
+    click('.delete-story');
+
+    andThen(function() {
+      assert.equal(currentRouteName(), 'stories.index');
+      assert.equal(/My first story/.test(find('body').text()), false);
+    });
   });
 });

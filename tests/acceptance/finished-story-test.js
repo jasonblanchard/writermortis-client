@@ -11,7 +11,7 @@ import storyFixture from 'writermortis/tests/fixtures/finished-story-fixture';
 var App;
 var server;
 
-module('Acceptance - editable story', {
+module('Acceptance - finished story', {
   beforeEach: function() {
     App = startApp();
 
@@ -51,14 +51,18 @@ test('It shows a finished story', function(assert) {
 });
 
 test("The owner can delete it", function(assert) {
-  authenticateSession();
-  currentSession().set('content', {user_id: 1});
+  Ember.run(function() {
+    var user = App.__container__.lookup('store:main').createRecord('user');
+    user.set('id', 1);
+    authenticateSession();
+    currentSession().set('currentUser', user);
 
-  visit('/stories/3');
-  click('.delete-story');
+    visit('/stories/3');
+    click('.delete-story');
 
-  andThen(function() {
-     assert.equal(currentRouteName(), 'stories.index');
-     assert.equal(/My first story/.test(find('body').text()), false);
+    andThen(function() {
+       assert.equal(currentRouteName(), 'stories.index');
+       assert.equal(/My first story/.test(find('body').text()), false);
+    });
   });
 });

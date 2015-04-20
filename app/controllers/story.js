@@ -48,7 +48,7 @@ export default Ember.Controller.extend({
 
   canPost: function() {
     var currentUser = this.get('currentUser');
-    if (currentUser && currentUser.get('id') !== undefined) {
+    if (currentUser && (currentUser.get('id') !== undefined) && (this.get('pieces').get('lastObject') !== undefined)) {
       // FIXME Ugggh
       return String(currentUser.get('id')) !== String(this.get('pieces').get('lastObject').get('user').get('id'));
     } else {
@@ -65,7 +65,7 @@ export default Ember.Controller.extend({
   canDelete: function() {
     var currentUser = this.get('currentUser');
     if (currentUser && currentUser.get('id') !== undefined) {
-      return this.get('model').get('user').get('id') === this.get('currentUser').get('id');
+      return String(this.get('model').get('user').get('id')) === String(this.get('currentUser').get('id'));
     } else {
       return false;
     }
