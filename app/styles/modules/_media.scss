@@ -1,0 +1,15 @@
+.media {
+  padding: 5px;
+  margin-bottom: 5px;
+
+  &, .db {
+    overflow: hidden;
+    _overflow:visible; zoom:1;
+  }
+
+  .image {
+    display: block;
+    float: left;
+    margin-right: 10px;
+  }
+}

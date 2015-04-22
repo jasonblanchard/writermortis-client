@@ -6,14 +6,14 @@
   <article class='center-block col-md-10 centered-column'>
     {{#each story in controller}}
     {{#link-to 'story' story}}
-      <div class='story-preview'>
-        <header>
-          <h1>
-            {{user-icon email=story.user.email}}
-            {{story.title}}
-          </h1>
+      <div class='media card story-preview'>
+        <h1>
+          {{user-icon email=story.user.email class='image'}}
+          {{story.title}}
+        </h1>
+        <div class='body'>
           <span class='truncated'>{{story.pieces.firstObject.text}}</span>
-        </header>
+        </div>
       </div>
       {{/link-to}}
     {{/each}}
