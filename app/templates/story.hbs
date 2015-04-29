@@ -10,9 +10,9 @@
   {{/if}}
 </div>
 
-<div class='col-md-3 participants'>
+<div class='col-md-3 stats muted'>
   <div class='piece-stats'>
-    <h2><small>{{currentNumPieces}} / {{model.totalPieces}} Pieces</small></h2>
+    <h2>{{currentNumPieces}} / {{model.totalPieces}} Pieces</h2>
     <div class="progress">
       <div class="progress-bar" role="progressbar" aria-valuenow={{percentComplete}} aria-valuemin="0" aria-valuemax="100" style={{progressBarStyle}}>
         <span class="sr-only">{{percentComplete}}% Complete</span>
@@ -20,7 +20,7 @@
     </div>
   </div>
   <div class='participants'>
-    <h2><small>participants</small></h2>
+    <h2>participants</h2>
     {{#each participant in participants}}
       <span class='sub'>{{participant-viewer participant=participant activeAuthorId=activeAuthorId}}</span>
     {{/each}}

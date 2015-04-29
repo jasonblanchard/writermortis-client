@@ -17,19 +17,6 @@ a:hover {
   color: rgb(144, 18, 18);
 }
 
-.sub {
-  color: rgb(145, 145, 145);
-}
-
-
-.pull-right {
-  float: right;
-}
-
-.pull-left {
-  float: left;
-}
-
 .navbar-default {
   background: white;
   border: 0px;
@@ -78,3 +65,4 @@ a:hover {
 @import "modules/card";
 @import "modules/grayscale";
 @import "modules/rounded";
+@import "modules/muted";
