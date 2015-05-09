@@ -7,7 +7,7 @@ export default function() {
 
   this.transition(
     this.toRoute('users.new'),
-    this.use('toUp')
+    this.use('toLeft')
   );
   
 }
