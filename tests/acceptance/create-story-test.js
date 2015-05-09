@@ -67,8 +67,8 @@ test("It runs validations", function(assert) {
   click("[type='submit']");
 
   andThen(function() {
-    assert.equal($.trim(find('.form-group.title .errors').text()), "can't be blank");
-    assert.equal($.trim(find('.form-group.first-piece .errors').text()), "can't be blank");
+    assert.equal($.trim(find('form .title .errors').text()), "can't be blank");
+    assert.equal($.trim(find('form .first-piece .errors').text()), "can't be blank");
   });
 });
 

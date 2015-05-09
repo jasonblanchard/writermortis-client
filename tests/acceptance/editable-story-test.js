@@ -119,7 +119,7 @@ test("Show allow the user who posted a piece to undo it", function(assert) {
     andThen(function() {
       click('button.undo-new-piece').then(function() {
         assert.equal($.trim(find('.last-piece').text()), 'there was a little cat named hamburger');
-        assert.equal($.trim(find('.form .new-piece').val()), 'And then it all got crazy');
+        assert.equal($.trim(find('.new-piece').val()), 'And then it all got crazy');
         assert.equal($.trim(find('.piece-stats h2').text()), '2 / 6 Pieces');
       });
     });
