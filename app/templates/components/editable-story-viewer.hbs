@@ -22,9 +22,11 @@
         {{formatted-text newPiece.text}}
         <br />
         <br />
-        <div class='input-field' {{action 'startEditing'}}>
-          {{textarea value=newPiece.text class='materialize-textarea new-piece'}}
-          <label>Continue the story</label>
+        <div class='row'>
+          <div class='input-field' {{action 'startEditing'}}>
+            {{textarea value=newPiece.text class='materialize-textarea new-piece'}}
+            <label>Continue the story</label>
+          </div>
         </div>
         {{/if}}
       </div>
@@ -33,10 +35,14 @@
 
     <div class='next-action clearfix'>
       {{#if canPost}}
-      <div class='pull-right'>
-        {{sentence-counter maxSentences=story.maxSentences currentPieceSentenceCount=currentPieceSentenceCount}}
-      </div>
-      <button disabled={{isDisabled}} {{action 'createPiece'}} class='btn btn-success submit pull-left'>Create Piece</button>
+        <div class='row'>
+          <div class='col m4 s12'>
+            <button disabled={{isDisabled}} {{action 'createPiece'}} class='btn btn-success submit pull-left'>Create Piece</button>
+          </div>
+          <div class='col m8 s12 right-align'>
+            {{sentence-counter maxSentences=story.maxSentences currentPieceSentenceCount=currentPieceSentenceCount}}
+          </div>
+        </div>
       {{else}}
       <div>
       <strong>You added the last piece!</strong>

@@ -2,8 +2,26 @@
   width: 90%;
 }
 
+nav {
+  background-color: rgba(207, 0, 8, 0.35);
+}
+
 nav .brand-logo {
   font-family: Eater,cursive;
   
   color: #424242;
+}
+
+nav:after {
+  content: '';
+  background: url('/skeleton.jpg');
+  opacity: 0.15;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  position: absolute;
+  z-index: -1;   
+  height: 64px;
+  background-position: 0% 55%;
 }

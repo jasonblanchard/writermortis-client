@@ -2,35 +2,36 @@
   <div>
     <h2>Register</h2>
     <form {{action 'createUser' on='submit'}}>
-      <div class="form-group">
+      <div class='input-field'>
         <label for='username'>Username</label>
+        {{input id='username' type='text' value=newUser.username name='username'}}
         {{#each error in newUser.errors.username}}
           <span class='errors username'>{{error.message}}</span>
         {{/each}}
-        {{input id='username' type='text' value=newUser.username name='username' class='form-control'}}
       </div>
-      <div class="form-group">
+      <div class="input-field">
         <label for='email'>Email</label>
+        {{input id='email' type='text' value=newUser.email}}
         {{#each error in newUser.errors.email}}
           <span class='errors email'>{{error.message}}</span>
         {{/each}}
-        {{input id='email' type='text' value=newUser.email class='form-control'}}
       </div>
-      <div class="form-group">
+      <div class="input-field">
         <label for='password'>Password</label>
+        {{input id='password' type='password' value=newUser.password}}
         {{#each error in newUser.errors.password}}
           <span class='errors password'>{{error.message}}</span>
         {{/each}}
-        {{input id='password' type='password' value=newUser.password class='form-control'}}
       </div>
-      <div class="form-group">
+      <div class="input-field">
         <label for='password-confirmation'>Password Confirmation</label>
+        {{input id='password-confirmation' type='password' value=newUser.passwordConfirmation}}
         {{#each error in newUser.errors.passwordConfirmation}}
           <span class='errors password-confirmation'>{{error.message}}</span>
         {{/each}}
-        {{input id='password-confirmation' type='password' value=newUser.passwordConfirmation class='form-control'}}
       </div>
       <button type='submit' class='btn btn-default'>Register</button>
+      {{#link-to 'index' class='btn-flat'}}cancel{{/link-to}}
     </form>
   </div>
 </div>
