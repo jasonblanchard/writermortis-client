@@ -17,31 +17,6 @@ a:hover {
   color: rgb(144, 18, 18);
 }
 
-.navbar-default {
-  background: white;
-  border: 0px;
-}
-
-.navbar-brand,
-.navbar-nav li a {
-    line-height: 30px;
-    height: 30px;
-    padding-top: 0;
-}
-
-.navbar {
-  min-height: 30px;
-  margin-bottom: 10px;
-}
-
-.progress {
-  height: 12px;
-}
-
-.navbar-brand {
-  font-family: 'Eater', cursive;
-}
-
 .centered-column {
   margin: 0 auto;
   float: none;
@@ -61,6 +36,7 @@ a:hover {
 @import "rules";
 @import "forms";
 @import "homepage";
+@import "bootstrap_overrides";
 @import "modules/media";
 @import "modules/card";
 @import "modules/grayscale";

@@ -1,0 +1,24 @@
+.navbar-default {
+  background: white;
+  border: 0px;
+}
+
+.navbar-brand,
+.navbar-nav li a {
+    line-height: 30px;
+    height: 30px;
+    padding-top: 0;
+}
+
+.navbar {
+  min-height: 30px;
+  margin-bottom: 10px;
+}
+
+.progress {
+  height: 12px;
+}
+
+.navbar-brand {
+  font-family: 'Eater', cursive;
+}
