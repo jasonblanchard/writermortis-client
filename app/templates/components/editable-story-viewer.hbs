@@ -1,10 +1,10 @@
 <div class='story editable'>
   <h2>
     {{story.title}}
-    {{#if canDelete}}
-      <button {{action 'destroyStory'}} class='delete-story btn btn-default btn-xs'>Delete</button>
-    {{/if}}
   </h2>
+  {{#if canDelete}}
+    <button {{action 'destroyStory'}} class='delete-story btn'>Delete</button>
+  {{/if}}
   <div>
     <div class='pieces transition-piece'>
       {{#liquid-with visiblePiece as visiblePiece}}
@@ -22,8 +22,9 @@
         {{formatted-text newPiece.text}}
         <br />
         <br />
-        <div class='form' {{action 'startEditing'}}>
-          {{textarea placeholder='Continue the story' value=newPiece.text class='form-control new-piece'}}
+        <div class='input-field' {{action 'startEditing'}}>
+          {{textarea id='continue-story' value=newPiece.text class='materialize-textarea new-piece'}}
+          <label for="continue-story">Continue the story</label>
         </div>
         {{/if}}
       </div>

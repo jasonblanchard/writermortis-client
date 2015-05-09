@@ -1,6 +1,6 @@
 <div class='col-md-6'>
   <form {{action 'createStory' on='submit'}}>
-    <div class="form-group title">
+    <div class="title">
       <label for='title'>Title</label>
       {{#if showErrors}}
         {{#each error in errors.model.title}}
@@ -17,7 +17,7 @@
       <label for='max-sentences'>Max Sentences for Each Piece</label>
       {{input type='text' id='max-sentences' value=newStory.maxSentences class='form-control' name='max-sentences'}}
     </div>
-    <div class="form-group first-piece">
+    <div class="first-piece">
       <label for='first-piece'>How should it start?</label>
 
       {{#if showErrors}}
@@ -29,7 +29,7 @@
         {{/each}}
       {{/if}}
 
-      {{textarea id='first-piece' value=firstPiece.text placeholder='Once upon a time...' class='form-control' name='first-piece'}}
+      {{textarea id='first-piece' value=firstPiece.text placeholder='Once upon a time...' class='materialize-textarea' name='first-piece'}}
       {{sentence-counter maxSentences=newStory.maxSentences currentPieceSentenceCount=currentPieceSentenceCount}}
     </div>
     <button type='submit' class='btn btn-default'>Create</button>

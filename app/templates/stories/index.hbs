@@ -1,20 +1,15 @@
-<div class='col-md-12'>
-  <article class='center-block col-md-10 centered-column'>
-    {{#link-to 'stories.new' class='btn btn-default btn-sm'}}New{{/link-to}}
-  </article>
-
-  <article class='center-block col-md-10 centered-column'>
+<div class='col m12'>
+  {{#link-to 'stories.new' class='btn btn-default btn-sm'}}New{{/link-to}}
+  <article class='collection'>
     {{#each story in controller}}
-    {{#link-to 'story' story}}
-      <div class='media card story-preview'>
-        <h1>
+      {{#link-to 'story' story class='collection-item'}}
+        <div class='story-preview'>
           {{user-icon email=story.user.email class='image'}}
           {{story.title}}
-        </h1>
-        <div class='body'>
-          <span class='truncated'>{{story.pieces.firstObject.text}}</span>
+          <div class='body'>
+            <span class='truncated'>{{story.pieces.firstObject.text}}</span>
+          </div>
         </div>
-      </div>
       {{/link-to}}
     {{/each}}
   </article>

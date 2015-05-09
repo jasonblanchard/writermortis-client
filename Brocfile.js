@@ -13,8 +13,8 @@ var app = new EmberApp({
 });
 
 app.import('bower_components/socket.io-client/socket.io.js');
-app.import('bower_components/bootstrap/dist/css/bootstrap.css');
-app.import('bower_components/bootstrap/dist/js/bootstrap.js');
+app.import('bower_components/materialize/dist/css/materialize.css');
+app.import('bower_components/materialize/dist/js/materialize.js');
 
 // Use `app.import` to add additional libraries to the generated
 // output files.

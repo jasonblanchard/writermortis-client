@@ -1,20 +1,24 @@
-<div class='col-md-9'>
-  {{#if piecesLeft}}
-    {{#if session.isAuthenticated}}
-      {{editable-story-viewer story=model visiblePiece=visiblePiece newPiece=newPiece canPost=canPost createPiece='createPiece' currentPieceSentenceCount=currentPieceSentenceCount canDelete=canDelete destroyStory='destroyStory' undo='undo' isEditing=isEditing isFirstPiece=isFirstPiece}}
-    {{else}}
-      {{anonymous-user-story-viewer model=model visiblePiece=visiblePiece}}
-    {{/if}}
-  {{else}}
-    {{finished-story story=story setActiveAuthor='setActiveAuthor' canDelete=canDelete destroyStory='destroyStory'}}
-  {{/if}}
+<div class='col l9 m12'>
+  <div class='card'>
+    <div class='card-content'>
+      {{#if piecesLeft}}
+        {{#if session.isAuthenticated}}
+          {{editable-story-viewer story=model visiblePiece=visiblePiece newPiece=newPiece canPost=canPost createPiece='createPiece' currentPieceSentenceCount=currentPieceSentenceCount canDelete=canDelete destroyStory='destroyStory' undo='undo' isEditing=isEditing isFirstPiece=isFirstPiece}}
+        {{else}}
+          {{anonymous-user-story-viewer model=model visiblePiece=visiblePiece}}
+        {{/if}}
+      {{else}}
+        {{finished-story story=story setActiveAuthor='setActiveAuthor' canDelete=canDelete destroyStory='destroyStory'}}
+      {{/if}}
+    </div>
+  </div>
 </div>
 
-<div class='col-md-3 stats muted'>
+<div class='col s12 l3 stats muted'>
   <div class='piece-stats'>
     <h2>{{currentNumPieces}} / {{model.totalPieces}} Pieces</h2>
     <div class="progress">
-      <div class="progress-bar" role="progressbar" aria-valuenow={{percentComplete}} aria-valuemin="0" aria-valuemax="100" style={{progressBarStyle}}>
+      <div class="determinate" role="progressbar" aria-valuenow={{percentComplete}} aria-valuemin="0" aria-valuemax="100" style={{progressBarStyle}}>
         <span class="sr-only">{{percentComplete}}% Complete</span>
       </div>
     </div>
