@@ -4,12 +4,8 @@
        {{#link-to 'stories.index' classNames='brand-logo'}}Writermortis{{/link-to}}
        <ul id='nav-mobile' class="right hide-on-med-and-down">
          {{#if session.isAuthenticated}}
-           <li class="dropdown">
-             <a href="#" class="dropdown-toggle current-user-menu" data-toggle="dropdown" role="button" aria-expanded="false">{{currentUser.email}}<span class="caret"></span></a>
-             <ul class="dropdown-menu" role="menu">
-               <li><a href='' {{ action 'invalidateSession' }}>Logout</a></li>
-             </ul>
-           </li>
+           <li>{{currentUser.email}}</li>
+           <li><a href='' {{ action 'invalidateSession' }}>Logout</a></li>
          {{else}}
            <li>{{#link-to 'login'}}Login{{/link-to}}</li>
          {{/if}}

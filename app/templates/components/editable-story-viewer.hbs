@@ -17,7 +17,7 @@
             {{{formatted-text visiblePiece.text}}}
           </div>
           {{#unless isEditing}}
-            {{redacted-line action='focusOnTextarea' large=true}}
+            {{redacted-line action='focusOnTextarea' large=true class='cursor-pointer'}}
           {{/unless}}
           {{#if canPost}}
             <div class='text-canvas-output first-paragraph-inline'>{{{formatted-text newPiece.text}}}</div>

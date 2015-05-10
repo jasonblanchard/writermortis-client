@@ -8,6 +8,10 @@ h1, h2 {
   margin: 0;
 }
 
+h2 {
+  font-size: 2.56rem;
+}
+
 a {
   color: rgb(184, 80, 80);
 }
@@ -42,4 +46,5 @@ a:hover {
 @import "modules/muted";
 @import "modules/text_canvas";
 @import "modules/inlines";
+@import "modules/cursor_pointers";
 @import "materialize_overrides";
