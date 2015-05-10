@@ -22,10 +22,10 @@
         {{formatted-text newPiece.text}}
         <br />
         <br />
-        <div class='row'>
-          <div class='input-field' {{action 'startEditing'}}>
+        <div class='text-canvas'>
+          <div id='test' class='input-field' {{action 'startEditing'}}>
             {{textarea value=newPiece.text class='materialize-textarea new-piece'}}
-            <label>Continue the story</label>
+            <label {{action 'focusOnTextarea'}}>Continue the story</label>
           </div>
         </div>
         {{/if}}
