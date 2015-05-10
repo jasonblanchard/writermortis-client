@@ -13,9 +13,9 @@
           {{#unless isFirstPiece}}
             {{redacted-line small=true}}&nbsp;
           {{/unless}}
-          <span class='text-canvas-output last-piece transition-piece first-paragraph-inline' data-author={{visiblePiece.user.id}}>
+          <div class='text-canvas-output last-piece transition-piece first-paragraph-inline last-paragraph-inline' data-author={{visiblePiece.user.id}}>
             {{{formatted-text visiblePiece.text}}}
-          </span>
+          </div>
           {{#unless isEditing}}
             {{redacted-line action='focusOnTextarea' large=true}}
           {{/unless}}
