@@ -1,0 +1,25 @@
+.text-canvas {
+  padding: 10px;
+  background: #F6F6F6;
+}
+
+.text-canvas-output {
+
+  display: inline;
+
+  strong {
+    font-weight: bold;
+  }
+
+  ul {
+    padding-left: 40px;
+  }
+
+  ul li {
+    list-style-type: disc;
+  }
+
+  p {
+    padding-top: 20px;
+  }
+}

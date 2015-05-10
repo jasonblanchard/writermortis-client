@@ -9,26 +9,30 @@
     <div class='pieces transition-piece'>
       {{#liquid-with visiblePiece as visiblePiece}}
       <div class='unfinished-story-text'>
-        {{#unless isFirstPiece}}
-          {{redacted-line small=true}}&nbsp;
-        {{/unless}}
-        <span class='last-piece transition-piece' data-author={{visiblePiece.user.id}}>
-          {{formatted-text visiblePiece.text}}
-        </span>
-        {{#unless isEditing}}
-        {{redacted-line action='focusOnTextarea' large=true}}
-        {{/unless}}
-        {{#if canPost}}
-        {{formatted-text newPiece.text}}
-        <br />
-        <br />
-        <div class='text-canvas'>
-          <div id='test' class='input-field' {{action 'startEditing'}}>
-            {{textarea value=newPiece.text class='materialize-textarea new-piece'}}
-            <label {{action 'focusOnTextarea'}}>Continue the story</label>
-          </div>
+        <div class='text'>
+          {{#unless isFirstPiece}}
+            {{redacted-line small=true}}&nbsp;
+          {{/unless}}
+          <span class='text-canvas-output last-piece transition-piece first-paragraph-inline' data-author={{visiblePiece.user.id}}>
+            {{{formatted-text visiblePiece.text}}}
+          </span>
+          {{#unless isEditing}}
+            {{redacted-line action='focusOnTextarea' large=true}}
+          {{/unless}}
+          {{#if canPost}}
+            <div class='text-canvas-output first-paragraph-inline'>{{{formatted-text newPiece.text}}}</div>
+          {{/if}}
         </div>
+
+        {{#if canPost}}
+          <div class='text-canvas'>
+            <div id='test' class='input-field' {{action 'startEditing'}}>
+              {{textarea value=newPiece.text class='materialize-textarea new-piece'}}
+              <label {{action 'focusOnTextarea'}}>Continue the story</label>
+            </div>
+          </div>
         {{/if}}
+
       </div>
       {{/liquid-with}}
     </div>

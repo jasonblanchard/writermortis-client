@@ -1,8 +1,15 @@
 import Ember from 'ember';
+import marked from 'npm:marked';
 
 export function formattedText(input) {
+
   if (input !== undefined) {
-    return String(input).replace(/\n\r?/g, '<br />').htmlSafe();
+    marked.setOptions({
+      sanitize: true,
+      gfm: true,
+      breaks: true
+    });
+    return marked(input);
   } else {
     return input;
   }
