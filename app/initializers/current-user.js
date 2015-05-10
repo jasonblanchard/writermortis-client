@@ -8,7 +8,7 @@ export function initialize(container) {
       if (!Ember.isEmpty(userId)) {
         return container.lookup('store:main').find('user', userId);
       }
-    }.property('user_id')
+    }.property('user_id', 'isAuthenticated')
   });
 }
 
