@@ -76,6 +76,6 @@ test("Should redirect to login for anon users", function(assert) {
   invalidateSession();
 
   visit('/stories/new').then(function() {
-    assert.equal(find('label[for="identification"]').text(), 'Login');
+    assert.equal(find('label[for="identification"]').text(), 'Email');
   });
 });
