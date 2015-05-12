@@ -1,7 +1,9 @@
 import Ember from 'ember';
 
 export default Ember.Controller.extend({
-  currentUser: Ember.computed.alias('session.currentUser'),
+  currentUser: function() {
+    return this.get('session.currentUser');
+  }.property('session.currentUser', 'session.isAuthenticated'),
 
   showNavbar: function() {
     var routeName = this.get('currentRouteName');

@@ -4,7 +4,7 @@
        {{#link-to 'stories.index' classNames='brand-logo'}}Writermortis{{/link-to}}
        <ul id='nav-mobile' class="right hide-on-med-and-down">
          {{#if session.isAuthenticated}}
-           <li>{{currentUser.email}}</li>
+           <li class='current-user'>{{currentUser.email}}</li>
            <li><a href='' {{ action 'invalidateSession' }}>Logout</a></li>
          {{else}}
            <li>{{#link-to 'login'}}Login{{/link-to}}</li>

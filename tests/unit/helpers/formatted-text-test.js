@@ -6,13 +6,8 @@ import {module, test} from 'qunit';
 
 module('FormattedTextHelper');
 
-// Replace this with your real tests.
-test('it works', function(assert) {
-  var result = formattedText(42);
-  assert.equal(result.string, '42');
-});
-
-test('it turns line breaks into <br /> tags', function(assert) {
+test('formats text in markdown', function(assert) {
   var result = formattedText('First line\n\rSecond line');
-  assert.equal(result, 'First line<br />Second line');
+  assert.equal(/<p>First line<\/p>/.test(result), true);
+  assert.equal(/<p>Second line<\/p>/.test(result), true);
 });

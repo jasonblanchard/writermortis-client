@@ -65,7 +65,7 @@ test('Redirects and logs in on success', function(assert) {
   andThen(function() {
     assert.equal(currentRouteName(), 'stories.index');
     andThen(function() {
-      assert.equal(find('.current-user-menu').text(), userFixtures.jason.user.email);
+      assert.equal(find('.current-user').text(), userFixtures.jason.user.email);
     });
   });
 });
