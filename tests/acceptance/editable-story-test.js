@@ -52,7 +52,7 @@ test("Should show the story to an anon user", function(assert) {
   visit('/').then(function() {
     visit('/stories/2').then(function() {
       assert.equal($.trim(find('.story h2').text()), "Second Story");
-      assert.equal($.trim(find('.last-piece').text()), '<p> there was a little cat named hamburger</p>');
+      assert.equal($.trim(find('.last-piece').text()), '<p>there was a little cat named hamburger</p>');
       assert.equal($.trim(find(".next-action").text()), 'Sign in the add to this story!');
       assert.equal($.trim(find('.piece-stats h2').text()), '2 / 6 Pieces');
     });

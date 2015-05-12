@@ -48,9 +48,8 @@
     "ember-watson": "^0.3.1",
     "express": "^4.8.5",
     "glob": "^4.0.5",
-    "liquid-fire": "^0.19.3"
-  },
-  "dependencies": {
-    "marked": "^0.3.3"
+    "liquid-fire": "^0.19.3",
+    "markdown-it": "^4.2.1",
+    "markdown-it-emoji": "^1.0.0"
   }
 }
